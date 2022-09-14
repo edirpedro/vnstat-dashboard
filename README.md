@@ -6,6 +6,8 @@
 
 This is an Application in development, intended to be a data visualization interface to read vnStat reports in a big screen. The app only shows the latest information from the reports, only consolidated values. Historic data is not available because there is no such data to be used on the vnStat database, but that's ok, the information you get is enough!
 
+Check out [Demo](https://edirpedro.github.io/vnstat-dashboard/)!
+
 ## How to install?
 
 1. Install [vnStat](https://github.com/vergoh/vnstat) on your machine.
