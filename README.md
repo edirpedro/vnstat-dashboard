@@ -6,7 +6,7 @@
 
 This is an Application in development, intended to be a data visualization interface to read vnStat reports in a big screen. The app only shows the latest information from the reports, only consolidated values. Historic data is not available because there is no such data to be used on the vnStat database, but that's ok, the information you get is enough!
 
-Check out [Demo](https://edirpedro.github.io/vnstat-dashboard/)!
+Check out the [Demo](https://edirpedro.github.io/vnstat-dashboard/)!
 
 ## How to install?
 
@@ -36,3 +36,7 @@ You can build themes for this tool, to create a custom theme follow these steps.
 5. Theme menu is located on the top right corner of the screen!
 
 ![vnStat Dashboard](https://github.com/edirpedro/vnstat-dashboard/blob/main/public/static/media/screenshot-2.jpg)
+
+## Credits
+
+Photos from [kevin laminto](https://unsplash.com/@kxvn_lx) and [John Peters](https://unsplash.com/@johnphiker), wallpapers from the internet (couldn't find the authors), video from [@tunnelmotions](https://pixabay.com/users/tunnelmotions-12767861/).
