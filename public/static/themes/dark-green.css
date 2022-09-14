@@ -11,7 +11,7 @@
 	--chart-background: rgba(255, 255, 255, .1);
 }
 .wallpaper {
-	background-image: url(/static/media/john-peters-EbOaaL8E_Z0-unsplash.jpg);
+	background-image: url(../media/john-peters-EbOaaL8E_Z0-unsplash.jpg);
 	opacity: .1;
 	filter: contrast(200%);
 }

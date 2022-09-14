@@ -11,7 +11,7 @@
 	--chart-background: rgba(255, 255, 255, .1);
 }	
 .wallpaper {
-	background-image: url(/static/media/kevin-laminto-7PqRZK6rbaE-unsplash.jpg);
+	background-image: url(../media/kevin-laminto-7PqRZK6rbaE-unsplash.jpg);
 	opacity: .7;
 	filter: contrast(110%);
 }

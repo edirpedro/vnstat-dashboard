@@ -11,7 +11,7 @@
 	--chart-background: rgba(255, 255, 255, .1);
 }	
 .wallpaper {
-	background-image: url(/static/media/cyberpunk-2077.jpg);
+	background-image: url(../media/cyberpunk-2077.jpg);
 	opacity: .7;
 }
 

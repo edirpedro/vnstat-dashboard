@@ -10,7 +10,7 @@ const Background = () => {
     return (
       <video className="background video" autoPlay muted loop>
         <source
-          src={theme.video}
+          src={process.env.PUBLIC_URL + theme.video}
           type={"video/" + extension}
         />
       </video>

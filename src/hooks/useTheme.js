@@ -25,7 +25,7 @@ const useTheme = () => {
     link = document.createElement("link");
     link.setAttribute("id", "theme");
     link.setAttribute("rel", "stylesheet");
-    link.setAttribute("href", theme.file);
+    link.setAttribute("href", process.env.PUBLIC_URL + theme.file);
     document.head.append(link);
     window.localStorage.setItem("theme", theme.file);
   }, [theme]);

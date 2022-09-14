@@ -1,12 +1,14 @@
 .DS_STORE
 node_modules
 /build
+/demo
 *.log
 *.map
 
 # My
 
 /private
+/docs/custom
 /public/custom
 /public/config.js
 TODO.md
