@@ -2,7 +2,7 @@
 
 > Data Visualization app for vnStat.
 
-![vnStat Dashboard](https://github.com/edirpedro/vnstat-dashboard/public/static/media/screenshot-1.jpg)
+![vnStat Dashboard](https://github.com/edirpedro/vnstat-dashboard/blob/main/public/static/media/screenshot-1.jpg)
 
 This is an Application in development, intended to be a data visualization interface to read vnStat reports in a big screen. The app only shows the latest information from the reports, only consolidated values. Historic data is not available because there is no such data to be used on the vnStat database, but that's ok, the information you get is enough!
 
@@ -33,4 +33,4 @@ You can build themes for this tool, to create a custom theme follow these steps.
 4. Open the `config.js` file and add it to the theme list to get it available on the dashboard.
 5. Theme menu is located on the top right corner of the screen!
 
-![vnStat Dashboard](https://github.com/edirpedro/vnstat-dashboard/public/static/media/screenshot-2.jpg)
+![vnStat Dashboard](https://github.com/edirpedro/vnstat-dashboard/blob/main/public/static/media/screenshot-2.jpg)
