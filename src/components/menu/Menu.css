@@ -1,0 +1,47 @@
+.menu {
+	z-index: 1;
+}
+.menu__box {
+	display: inline-block;
+	padding: 10px;
+	border: 1px solid var(--rx);
+	background: transparent;
+}
+.menu__box:hover {
+	backdrop-filter: blur(5px);
+}
+.menu__title {
+	color: var(--text);
+	text-transform: uppercase;
+}
+
+/* List */
+
+.menu__list {
+	display: none;
+	padding: 15px 0 0;
+	list-style: none;
+}
+.menu__box:hover .menu__list {
+	display: block;
+}
+.menu__list button {
+	display: block;
+	width: calc(100% + 40px);
+	padding: 5px 20px;
+	margin: 0 -20px;
+	text-align: left;
+	white-space: nowrap;
+	text-decoration: none;
+	color: var(--text);
+	background: transparent;
+	transition: all .2s linear;
+}
+.menu__list button.active {
+	color: var(--rx);
+}
+.menu__list button:hover {
+	color: var(--rx-text);
+	background: var(--rx);
+	transition: all .2s linear;
+}

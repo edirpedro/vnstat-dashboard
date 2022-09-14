@@ -1,0 +1,13 @@
+.DS_STORE
+node_modules
+/build
+*.log
+*.map
+
+# My
+
+/private
+/public/custom
+/public/config.js
+TODO.md
+*.code-workspace

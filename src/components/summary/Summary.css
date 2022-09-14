@@ -1,0 +1,36 @@
+.summary {
+	justify-content: end;
+}
+.summary__charts {
+	display: flex;
+	gap: 15px;
+	flex-wrap: wrap;
+	justify-content: flex-end;
+}
+.summary__charts-group {
+	display: flex;
+	gap: 3px;
+}
+.summary__charts-group.is-day > div,
+.summary__charts-group.is-month > div {
+	flex: 1 1 50%;
+	width: 50%;
+}
+.summary__charts svg {
+	width: 63px;
+	height: 40px;
+}
+.summary__charts p {
+	margin: 0;
+	font-size: 10px;
+	color: var(--text);
+	text-align: right;
+	white-space: nowrap;
+	text-transform: capitalize;
+}
+.summary__charts p.rx {
+	color: var(--rx);
+}
+.summary__charts p.tx {
+	color: var(--tx);
+}

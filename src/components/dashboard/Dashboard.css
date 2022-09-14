@@ -1,0 +1,12 @@
+.dashboard {
+	display: grid;
+	width: 100vw;
+	height: 100vh;
+	grid-template-columns: repeat(16, 1fr);
+	grid-template-rows: repeat(9, minmax(0, 1fr));
+	grid-gap: 10px;
+	padding: 50px;
+	background-image: radial-gradient(circle, var(--dots) 1px, transparent 1px);
+	background-size: 50px 50px;
+	background-position: center center;
+}

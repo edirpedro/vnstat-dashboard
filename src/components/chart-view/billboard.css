@@ -1,0 +1,58 @@
+.bb,
+.bb svg {
+	width: 100%;
+	height: 100%;
+}
+
+/* Legend */
+
+.bb-legend-background {
+	fill: transparent;
+	stroke: none;
+}
+.bb-legend-item text {
+	fill: var(--text);
+}
+
+/* Axis */
+
+.bb-axis .domain {
+	stroke: var(--text);
+	opacity: 0;
+}
+.bb-axis .tick line {
+	stroke: var(--text);
+}
+.bb-axis .tick text {
+	fill: var(--text);
+	text-transform: capitalize;
+}
+.bb-grid line {
+    stroke: var(--text);
+}
+
+/* Tooltip */
+
+.bb-tooltip-container {
+	padding: 5px 10px;
+	background: var(--card-highlight);
+}
+.bb-tooltip {
+	background: transparent;
+	box-shadow: none;
+}
+.bb-tooltip tr {
+	border: 0;
+}
+.bb-tooltip th {
+	white-space: nowrap;
+	background-color: transparent;
+	color: var(--text);
+	text-transform: capitalize;
+	font-weight: normal;
+}
+.bb-tooltip td {
+	white-space: nowrap;
+	background-color: transparent;
+	border: 0;
+}

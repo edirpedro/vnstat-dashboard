@@ -1,0 +1,6 @@
+.widget {
+	position: relative;
+	display: flex;
+	align-items: baseline;
+	height: 100%;
+}
