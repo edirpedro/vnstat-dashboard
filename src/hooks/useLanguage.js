@@ -1,29 +1,31 @@
-import React from 'react'
-import { DateTime } from 'luxon';
+import React from "react";
+import { DateTime } from "luxon";
 
 const useLanguage = () => {
-	const [translations, setTranslations] = React.useState([]);
-	
-	React.useEffect(() => {
-		const local = DateTime.local();
-		async function request() {
+  const [translations, setTranslations] = React.useState([]);
+
+  React.useEffect(() => {
+    const local = DateTime.local();
+    async function request() {
       try {
-        const response = await fetch("/languages/" + local.locale + ".json");
+        const response = await fetch(
+          process.env.PUBLIC_URL + "/languages/" + local.locale + ".json"
+        );
         const json = await response.json();
         if (!response.ok) throw new Error();
-				setTranslations(json);
+        setTranslations(json);
       } catch (e) {
         console.log("Language file for '" + local.locale + "' was not found.");
       }
     }
     request();
-	}, []);
+  }, []);
 
-	function __(text) {
-		return translations[text] ?? text;
-	}
+  function __(text) {
+    return translations[text] ?? text;
+  }
 
-	return { __ }
-}
+  return { __ };
+};
 
-export default useLanguage
+export default useLanguage;
