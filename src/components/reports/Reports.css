@@ -127,19 +127,20 @@
 
 /* Chart */
 
-.reports__cards .col-chart > div {
+.reports__cards .col-chart div {
 	position: absolute;
 	top: 0;
 	left: 0;
 	width: 100%;
 	display: flex;
+	gap: 1px;
 	justify-content: space-between;	
 	background: var(--chart-background);
 }
-.reports__cards .col-chart > div > div {
+.reports__cards .col-chart span {
+	display: block;
 	min-width: 1px;
 	height: 2px;
-	margin-left: 1px;
 }
 .reports__cards .col-chart .rx {
 	background: var(--rx);

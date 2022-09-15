@@ -32,14 +32,14 @@ const Card = ({ type, item, index, max }) => {
       </div>
       <div className="col-chart">
         <div>
-          <div
+          <span
             className="rx"
             style={{ width: Math.round((item.rx / max) * 100) + "%" }}
-          ></div>
-          <div
+          ></span>
+          <span
             className="tx"
             style={{ width: Math.round((item.tx / max) * 100) + "%" }}
-          ></div>
+          ></span>
         </div>
       </div>
       <div className="col-rx">{formatTraffic(item.rx)}</div>

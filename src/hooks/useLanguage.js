@@ -2,7 +2,7 @@ import React from "react";
 import { DateTime } from "luxon";
 
 const useLanguage = () => {
-  const [translations, setTranslations] = React.useState([]);
+  const [translations, setTranslations] = React.useState({});
 
   React.useEffect(() => {
     const local = DateTime.local();

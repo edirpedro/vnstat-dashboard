@@ -7,10 +7,6 @@ window.vnStat = {
 	
 	interfaces: [
 		{ name: "en0", title: "Network" }
-	],
-
-	// Themes
-
-	themes: [],
+	]
 
 };
