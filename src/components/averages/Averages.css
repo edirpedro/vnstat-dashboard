@@ -1,8 +1,8 @@
-.estimated {
+.averages {
 	flex-direction: column;
 	gap: 25px;
 }
-.estimated h2 {
+.averages h2 {
 	display: inline-block;
 	margin: 0;
 	padding: 0 10px;
@@ -14,11 +14,11 @@
 
 /* Items */
 
-.estimated__item {
+.averages__item {
 	display: flex;
 	flex-wrap: wrap;
 }
-.estimated__item h3 {
+.averages__item h3 {
 	flex: 0 0 100%;
 	margin: 0 0 10px;
 	font-size: 20px;
@@ -27,7 +27,7 @@
 
 /* List */
 
-.estimated__list {
+.averages__list {
 	flex: 0 0 auto;
 	display: flex;
 	flex-direction: column;
@@ -35,53 +35,53 @@
 	margin: 0;
 	list-style: none;
 }
-.estimated__list li {
+.averages__list li {
 	padding: 0;
 	margin: 0;
 	font-size: 13px;
 	line-height: 1.2;
 }
-.estimated__list li.rx {
+.averages__list li.rx {
 	color: var(--rx);
 }
-.estimated__list li.tx {
+.averages__list li.tx {
 	color: var(--tx);
 }
 
 /* Charts */
 
-.estimated__chart {
+.averages__chart {
 	flex: 0 0 25px;
 	display: flex;
 	flex-direction: row;
 	gap: 3px;
 }
-.estimated__chart div {
+.averages__chart div {
 	height: 100%;
 	background: var(--chart-background);
 }
-.estimated__chart span {
+.averages__chart span {
 	display: block;
 	width: 5px;
 }
-.estimated__chart .rx span {
+.averages__chart .rx span {
 	background: var(--rx);
 }
-.estimated__chart .tx span {
+.averages__chart .tx span {
 	background: var(--tx);
 }
 
 /* Animation */
 
-.estimated__chart span {
+.averages__chart span {
 	animation-delay: 100ms;
-	animation-name: estimated;
+	animation-name: averages;
 	animation-duration: 1s;
 	animation-fill-mode: both;
 	animation-timing-function: linear;
 }
 
-@keyframes estimated {
+@keyframes averages {
 	0% { height: 0%; }
 	100% { height: var(--height); }
 }

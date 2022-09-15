@@ -1,15 +1,15 @@
 import React from "react";
 import { formatTraffic } from "../../services/helpers";
 
-const Chart = ({ rx, tx, title }) => {
+const Chart = ({ count, rx, tx, title }) => {
   const max = rx + tx;
   const calcRX = Math.round((rx / max) * 100);
   const calcTX = Math.round((tx / max) * 100);
 
   return (
-    <div className="estimated__item">
-      <h3>{title}</h3>
-      <div className="estimated__chart">
+    <div className="averages__item">
+      <h3>/{title}</h3>
+      <div className="averages__chart">
         <div className="rx">
           <span
             style={{ height: calcRX + "%", "--height": calcRX + "%" }}
@@ -21,10 +21,10 @@ const Chart = ({ rx, tx, title }) => {
           ></span>
         </div>
       </div>
-      <ul className="estimated__list">
-        <li className="rx">{formatTraffic(rx)}</li>
-        <li className="tx">{formatTraffic(tx)}</li>
-        <li className="total">{formatTraffic((rx + tx))}</li>
+      <ul className="averages__list">
+        <li className="rx">{formatTraffic(rx / count)}</li>
+        <li className="tx">{formatTraffic(tx / count)}</li>
+        <li className="total">{formatTraffic((rx + tx) / count)}</li>
       </ul>
     </div>
   );

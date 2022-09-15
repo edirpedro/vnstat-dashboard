@@ -28,12 +28,12 @@ class vnStat {
 
   getCreated() {
     if (this._json.length === 0) return [];
-    return this.completeDateTime(this._json.interfaces[0].created);
+    return this._json.interfaces[0].created;
   }
 
   getUpdated() {
     if (this._json.length === 0) return [];
-    return this.completeDateTime(this._json.interfaces[0].updated);
+    return this._json.interfaces[0].updated;
   }
 
   getTotal() {
