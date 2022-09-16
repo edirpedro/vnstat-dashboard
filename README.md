@@ -4,22 +4,30 @@
 
 ![vnStat Dashboard](https://github.com/edirpedro/vnstat-dashboard/blob/main/public/static/media/screenshot-1.jpg)
 
-This is an Application in development, intended to be a data visualization interface to read vnStat reports in a big screen. The app only shows the latest information from the reports, only consolidated values. Historic data is not available because there is no such data to be used on the vnStat database, but that's ok, the information you get is enough!
+This is an Application in development, intended to be a data visualization interface to read vnStat reports in the big screen. The app only shows the latest information from the reports, only consolidated values. Historic data is not available because there is no such data to be used on the vnStat database, but that's ok, the information you get is enough!
 
 Check out the [Demo](https://edirpedro.github.io/vnstat-dashboard/)!
 
 ## How to install?
 
 1. Install [vnStat](https://github.com/vergoh/vnstat) on your machine.
-2. Download a copy of this repository.
-3. Follow one of the nexts:
+2. Download a copy of this repository, at the folder `/build` you can find all the app files.
+3. Copy `config-sample.js`, rename it to `config.js` and customize your settings.
+3. Follow one of the nexts to start a server:
 
-### PHP Server
+### PHP
+
+To use the PHP API, open the file `/api/vnstat.json.php` and make sure the environment is correct to find your vnStat installation.
+
+#### Built-in Server
+
+1. Open your Terminal application and go to the folder `/build`.
+2. Launch the server `php -S localhost:8000`.
+
+#### Another Servers
 
 1. Create a domain on your PHP Server, like `vnstat.test`.
-2. Copy the content of the folder `/build` to your server **public** folder.
-3. Copy `config-sample.js` and rename it to `config.js`, now customize your settings.
-4. Open the file `/api/vnstat.json.php` in some code editor and make sure the environment is correct to your vnStat installation.
+2. Copy the content of the folder `/build` to your **public** folder.
 
 ## Translations
 
