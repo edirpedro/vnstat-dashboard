@@ -2,7 +2,7 @@ import React from "react";
 import { DateTime } from "luxon";
 import Card from "./Card";
 
-const Cards = ({ type, traffic }) => {
+const Cards = ({ type, traffic, updated }) => {
   const ref = React.useRef();
   const rx = traffic.map((el) => el.rx);
   const tx = traffic.map((el) => el.tx);
@@ -66,6 +66,7 @@ const Cards = ({ type, traffic }) => {
               item={item}
               index={index}
               max={max}
+							updated={updated}
             />
           )
         )}

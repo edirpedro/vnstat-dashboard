@@ -1,0 +1,15 @@
+:root {
+	--rx: #e20b61;
+	--tx: #7ccfff;
+	--rx-text: white;
+	--tx-text: black;
+	--text: white;
+	--background: #000;
+	--dots: transparent;
+	--card:  linear-gradient(to bottom, rgba(255, 255, 255, .1), transparent);
+	--card-highlight: linear-gradient(to bottom, rgba(0, 0, 0, .5), transparent);
+	--chart-background: rgba(255, 255, 255, .1);
+}
+.video {
+	opacity: .7;
+}

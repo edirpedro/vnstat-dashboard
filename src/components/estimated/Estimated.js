@@ -12,7 +12,8 @@ const Estimated = ({ column, row }) => {
   const updatedObj = { ...updated.date, ...updated.time };
   const datetime = DateTime.fromObject({ ...updatedObj });
 
-  // Based on the vnstat getestimates() at /src/misc.c
+	// https://github.com/vergoh/vnstat/blob/master/src/misc.c - getestimates()
+
   function getEstimates(type) {
     let rx = 0;
     let tx = 0;
@@ -60,7 +61,7 @@ const Estimated = ({ column, row }) => {
     return { rx: rx, tx: tx };
   }
 
-  let estimated = [
+  const estimated = [
     { type: "day", title: __("Today"), ...getEstimates("day") },
     { type: "month", title: __("Month"), ...getEstimates("month") },
     { type: "year", title: __("Year"), ...getEstimates("year") },

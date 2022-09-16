@@ -37,7 +37,7 @@ const Reports = ({ column, row, initial }) => {
           ))}
         </div>
       </div>
-      <Cards type={type} traffic={traffic} />
+      <Cards type={type} traffic={traffic} updated={reports.getUpdated()} />
     </Widget>
   );
 };

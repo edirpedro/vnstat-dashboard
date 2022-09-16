@@ -105,7 +105,11 @@
 }
 .reports__cards .col-total {
 	font-size: 18px;
-	margin-top: 5px;
+	margin: 5px 0;
+	text-align: right;
+}
+.reports__cards .col-rate {
+	font-size: 12px;
 	text-align: right;
 }
 

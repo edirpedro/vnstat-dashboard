@@ -1,4 +1,12 @@
 window.vnStat = {
+
+	// How units are prefixed
+	// IEC = standard prefixes (KiB and Kibit/s) (default)
+	// JEDEC = binary prefixes (KB and Kbit/s)
+	// SI = decimal prefixes (kB and kbit/s)
+
+	units: "IEC",
+
   // API
 
 	api: "http://localhost:3000/api/vnstat.json.php",

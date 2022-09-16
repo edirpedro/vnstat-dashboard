@@ -11,13 +11,13 @@ Check out the [Demo](https://edirpedro.github.io/vnstat-dashboard/)!
 ## How to install?
 
 1. Install [vnStat](https://github.com/vergoh/vnstat) on your machine.
-2. Download the latest [Release](https://github.com/edirpedro/vnstat-dashboard/releases).
+2. Download a copy of this repository.
 3. Follow one of the nexts:
 
 ### PHP Server
 
-1. Create a domain on your PHP Server, like `vnstat.test`, it requires PHP 8.0.
-2. Put the release files on the **public** folder.
+1. Create a domain on your PHP Server, like `vnstat.test`.
+2. Copy the content of the folder `/build` to your server **public** folder.
 3. Copy `config-sample.js` and rename it to `config.js`, now customize your settings.
 4. Open the file `/api/vnstat.json.php` in some code editor and make sure the environment is correct to your vnStat installation.
 
