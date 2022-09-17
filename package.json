@@ -17,7 +17,7 @@
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
-    "docs": "BUILD_PATH=docs PUBLIC_URL=/vnstat-dashboard react-scripts build",
+    "docs": "bash tasks/docs.sh",
 	"test": "react-scripts test",
     "eject": "react-scripts eject"
   },
