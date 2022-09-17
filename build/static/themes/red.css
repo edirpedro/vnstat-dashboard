@@ -21,9 +21,6 @@
 	width: calc(100% - 4px);
 	margin: 2px;
 }
-.reports__cards .col-chart span {
-	height: 4px;
-}
 .chart-view__menu button:hover, 
 .chart-view__menu button.active {
 	color: var(--tx);
