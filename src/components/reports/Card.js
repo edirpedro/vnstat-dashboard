@@ -1,15 +1,7 @@
 import React from "react";
 import { DateTime } from "luxon";
-import {
-  formatTraffic,
-  formatTrafficRate,
-  getTrafficRate,
-} from "../../services/helpers";
 
-const Card = ({ type, item, index, max, updated }) => {
-  const isongoing = index <= 1;
-  const rate = getTrafficRate(item, type, updated, isongoing);
-
+const Card = ({ type, item, index, max }) => {
   function theTitle() {
     const date = DateTime.fromObject({ ...item.date, ...item.time });
     switch (type) {
@@ -49,10 +41,10 @@ const Card = ({ type, item, index, max, updated }) => {
           ></span>
         </div>
       </div>
-      <div className="col-rx">{formatTraffic(item.rx)}</div>
-      <div className="col-tx">{formatTraffic(item.tx)}</div>
-      <div className="col-total">{formatTraffic(item.rx + item.tx)}</div>
-      <div className="col-rate">{formatTrafficRate(rate)}</div>
+      <div className="col-rx">{item.rx_formatted}</div>
+      <div className="col-tx">{item.tx_formatted}</div>
+      <div className="col-total">{item.total_formatted}</div>
+      <div className="col-rate">{item.rate_formatted}</div>
     </li>
   );
 };

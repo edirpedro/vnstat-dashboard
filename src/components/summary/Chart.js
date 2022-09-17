@@ -1,5 +1,4 @@
 import React from "react";
-import { formatTraffic } from "../../services/helpers";
 import { DateTime } from "luxon";
 import * as d3 from "d3";
 
@@ -98,9 +97,9 @@ const Chart = ({ name, item, higher, __ }) => {
     <div className={"chart-" + name}>
       <svg ref={ref} width="100%"></svg>
       <p>{title}</p>
-      <p className="rx">{formatTraffic(rx)}</p>
-      <p className="tx">{formatTraffic(tx)}</p>
-      <p className="sum">{formatTraffic(rx + tx)}</p>
+      <p className="rx">{item.rx_formatted}</p>
+      <p className="tx">{item.tx_formatted}</p>
+      <p className="sum">{item.total_formatted}</p>
     </div>
   );
 };

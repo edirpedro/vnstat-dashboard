@@ -68,16 +68,23 @@ const Chart = ({ type, traffic }) => {
     },
   };
 
-  // Log Scales to make TX appears on chart
+  // Log Scales to make low traffic appears on chart
 
   switch (type) {
     case "fiveminute":
     case "hour":
+			defaults.axis.y = {
+        show: false,
+        type: "log",
+        min: 1024, // KB
+        max: Math.pow(1024, 4), // TB
+      };
+			break;
     case "day":
       defaults.axis.y = {
         show: false,
         type: "log",
-        min: 1024, // KB
+        min: Math.pow(1024, 2), // MB
         max: Math.pow(1024, 4), // TB
       };
       break;

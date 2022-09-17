@@ -2,6 +2,7 @@ import { DateTime, Interval } from "luxon";
 
 class vnStat {
   _json = [];
+  _units = {};
 
   /**
    * Instantiate a vnStat object to manipulate the reports
@@ -11,20 +12,20 @@ class vnStat {
   constructor(json) {
     if (json.interfaces.length === 0) return false;
     this._json = json;
-    const traffic = this._json.interfaces[0].traffic;
-    Object.keys(traffic).forEach((type) => this.fillGaps(type));
+    this._units = vnStat.getUnits();
+    this.prepare();
     return this;
   }
 
   // Functions to collect data from the JSON.
 
-	getVersion() {
-		return this._json.vnstatversion;
-	}
+  getVersion() {
+    return this._json.vnstatversion;
+  }
 
-	getInterface() {
-		return this._json.interfaces[0].name;
-	}
+  getInterface() {
+    return this._json.interfaces[0].name;
+  }
 
   getCreated() {
     if (this._json.length === 0) return [];
@@ -87,6 +88,40 @@ class vnStat {
   }
 
   /**
+   * Prepare JSON data to be used
+   */
+  prepare() {
+    let traffic = this._json.interfaces[0].traffic;
+
+    // Fill Gaps
+
+    Object.keys(traffic).forEach((type) => this.fillGaps(type));
+
+    // Format all traffic data and calculate rates
+
+    Object.keys(traffic).forEach((type) => {
+      let data = traffic[type];
+      if (type === "total") {
+        data.rx_formatted = this.formatTraffic(data.rx);
+        data.tx_formatted = this.formatTraffic(data.tx);
+				data.total = data.rx + data.tx;
+				data.total_formatted = this.formatTraffic(data.total);
+      } else {
+        data.forEach((item, index) => {
+					const isongoing = index === data.length - 1; // the last item
+          const rate = this.calculateTrafficRate(item, type, isongoing);
+          item.rx_formatted = this.formatTraffic(item.rx);
+          item.tx_formatted = this.formatTraffic(item.tx);
+					item.total = item.rx + item.tx;
+					item.total_formatted = this.formatTraffic(item.total);
+          item.rate = rate;
+          item.rate_formatted = this.formatTraffic(rate, 2, true);
+        });
+      }
+    });
+  }
+
+  /**
    * Fill the gaps between dates according to the type of report.
    * @param {string} type Type of report fiveminute, hour, day, month or year
    * @returns {class}
@@ -114,11 +149,11 @@ class vnStat {
 
     switch (type) {
       case "fiveminute":
-        start = end.minus({ hour: 24 });
+        start = end.minus({ hour: 24 }); // Reduce to 24 hours
         splitby = { minutes: 5 };
         break;
       case "hour":
-        start = end.minus({ hour: 48 });
+        start = end.minus({ hour: 48 }); // Reduce to 48 hours
         splitby = { hour: 1 };
         break;
       case "day":
@@ -182,7 +217,7 @@ class vnStat {
         ...compare.time,
       }).toSQL();
       const key = data.findIndex((el) => el.datetime === compare);
-      data[key] = { ...data[key], ...item };
+      if (key >= 0) data[key] = { ...data[key], ...item };
     });
 
     // Update
@@ -220,6 +255,115 @@ class vnStat {
       },
     };
     return obj;
+  }
+
+  /**
+   * Format traffic
+   * @param {integer} bytes Traffic data
+   * @param {integer} decimals Decimals to show
+   * @param {boolean} rate Return in bit rate
+   * @returns {string}
+   */
+  formatTraffic(bytes, decimals = 2, rate = false) {
+    const prefixes = rate ? this._units.rates : this._units.prefixes;
+    if (bytes === 0) return "0 " + prefixes[0];
+    const k = this._units.base;
+    const dm = decimals < 0 ? 0 : decimals;
+    const i = Math.floor(Math.log(bytes) / Math.log(k));
+    return parseFloat((bytes / Math.pow(k, i)).toFixed(dm)) + " " + prefixes[i];
+  }
+
+  /**
+   * Get units to format traffic data
+   * @returns {object}
+   */
+  static getUnits() {
+    const options = {
+      IEC: {
+        base: 1024,
+        prefixes: ["B", "KiB", "MiB", "GiB", "TiB", "PiB", "EiB"],
+        rates: ["bit/s", "Kibit/s", "Mibit/s", "Gibit/s", "Tibit/s", "Pibit/s", "Eibit/s"], // prettier-ignore
+      },
+      JEDEC: {
+        base: 1024,
+        prefixes: ["B", "KB", "MB", "GB", "TB", "PB", "EB"],
+        rates: ["bit/s", "Kbit/s", "Mbit/s", "Gbit/s", "Tbit/s", "Pbit/s", "Ebit/s"], // prettier-ignore
+      },
+      SI: {
+        base: 1000,
+        prefixes: ["B", "kB", "MB", "GB", "TB", "PB", "EB"],
+        rates: ["bit/s", "kbit/s", "Mbit/s", "Gbit/s", "Tbit/s", "Pbit/s", "Ebit/s"], // prettier-ignore
+      },
+    };
+    const units = window.vnStat.units ?? "IEC";
+    return options[units] ?? options.IEC;
+  }
+
+  /**
+   * Calculate traffic rate
+   * https://github.com/vergoh/vnstat/blob/master/src/misc.c - getperiodseconds()
+   * @param {data} entry Data to be calculated
+   * @param {string} type Type of report
+   * @param {boolean} isongoing If data is beeing recorded
+   * @returns
+   */
+  calculateTrafficRate(entry, type, isongoing = false) {
+    let interval;
+    let start;
+    const updated = this.getUpdated();
+    let end = { ...updated.date, ...updated.time };
+
+    if (isongoing) {
+      switch (type) {
+        case "top":
+          interval = 86400;
+          break;
+        case "fiveminute":
+          interval = 300;
+          break;
+        case "hour":
+          start = DateTime.fromObject({ ...end, minute: 0 });
+          break;
+        case "day":
+          start = DateTime.fromObject({ ...end, hour: 0, minute: 0 });
+          break;
+        case "month":
+          start = DateTime.fromObject({ ...end, day: 1, hour: 0, minute: 0 }); // prettier-ignore
+          break;
+        case "year":
+          start = DateTime.fromObject({ ...end, month: 1, day: 1, hour: 0, minute: 0 }); // prettier-ignore
+          break;
+        default:
+          interval = 0;
+      }
+      if (start)
+        interval = Interval.fromDateTimes(start, { ...end }).length("seconds");
+    } else {
+      switch (type) {
+        case "top":
+        case "day":
+          interval = 86400;
+          break;
+        case "month":
+          interval = DateTime.fromObject({ ...entry.date }).daysInMonth * 86400;
+          break;
+        case "year":
+          interval = DateTime.fromObject({ ...entry.date }).daysInYear * 86400;
+          break;
+        case "hour":
+          interval = 3600;
+          break;
+        case "fiveminute":
+          interval = 300;
+          break;
+        default:
+          interval = 0;
+      }
+    }
+
+    if (interval === 0) return 0;
+
+    return ((entry.rx + entry.tx) * 8) / interval;
   }
 }
 
