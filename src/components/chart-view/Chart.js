@@ -1,6 +1,6 @@
 import React from "react";
 import { formatTraffic } from "../../services/helpers";
-import { bb, areaSpline } from "billboard.js";
+import { bb, areaSpline, zoom } from "billboard.js";
 import { DateTime } from "luxon";
 
 const Chart = ({ type, traffic }) => {
@@ -13,6 +13,9 @@ const Chart = ({ type, traffic }) => {
       columns: [],
       type: areaSpline(),
       // groups: [["RX", "TX"]], // This makes log scales oversize the chart!
+    },
+    zoom: {
+      enabled: zoom(),
     },
     clipPath: false,
     spline: {
@@ -73,13 +76,13 @@ const Chart = ({ type, traffic }) => {
   switch (type) {
     case "fiveminute":
     case "hour":
-			defaults.axis.y = {
+      defaults.axis.y = {
         show: false,
         type: "log",
         min: 1024, // KB
         max: Math.pow(1024, 4), // TB
       };
-			break;
+      break;
     case "day":
       defaults.axis.y = {
         show: false,
@@ -131,10 +134,14 @@ const Chart = ({ type, traffic }) => {
 
   // Create addicional grid lines
 
-  function getGridLines(search, data) {
+  function getGridLines(type, data) {
     let lines = [];
     data.forEach((value) => {
-      if (value.toString().indexOf(search) !== -1) lines.push({ value: value });
+      let datetime = DateTime.fromJSDate(value);
+      let line = false;
+      if (type === "day") line = datetime.hour === 0 && datetime.minute === 0;
+      else if (type === "month") line = datetime.day === 1;
+      if (line) lines.push({ value: value });
     });
     return lines;
   }
@@ -153,18 +160,37 @@ const Chart = ({ type, traffic }) => {
     return columns;
   }
 
+  // Mount the correct zoom range
+
+  function getZoomRange(columns, start) {
+    const x = columns[0];
+    const min = x.length - 1;
+    if (start > min) start = min;
+    return [x.at(-start), x.at(-1)];
+  }
+
   // Define chart options according to report type
 
   let options = { ...defaults };
+  let zoomRange;
   const columns = getColumns();
 
   switch (type) {
     case "fiveminute":
-      options.grid.x.lines = getGridLines("00:00:00", columns[0]);
+      options.grid.x.lines = getGridLines("day", columns[0]);
       options.axis.x.tick.count = 100;
+      zoomRange = getZoomRange(columns, 288); // 24h
       break;
     case "hour":
-      options.grid.x.lines = getGridLines("00:00:00", columns[0]);
+      options.grid.x.lines = getGridLines("day", columns[0]);
+      zoomRange = getZoomRange(columns, 48); // 48h
+      break;
+    case "day":
+      // options.grid.x.lines = getGridLines("month", columns[0]);
+      zoomRange = getZoomRange(columns, 30);
+      break;
+    case "month":
+      zoomRange = getZoomRange(columns, 12);
       break;
     default:
   }
@@ -178,6 +204,7 @@ const Chart = ({ type, traffic }) => {
         bindto: ref.current,
       });
       instance.current.load({ columns: columns });
+      if (zoomRange) instance.current.zoom(zoomRange);
     }
     return () => {
       if (instance.current) {

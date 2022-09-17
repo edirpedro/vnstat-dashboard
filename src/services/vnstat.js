@@ -149,11 +149,9 @@ class vnStat {
 
     switch (type) {
       case "fiveminute":
-        start = end.minus({ hour: 24 }); // Reduce to 24 hours
         splitby = { minutes: 5 };
         break;
       case "hour":
-        start = end.minus({ hour: 48 }); // Reduce to 48 hours
         splitby = { hour: 1 };
         break;
       case "day":
