@@ -1,18 +1,12 @@
 .DS_STORE
-.vscode
 node_modules
 *.log
 *.map
 
 # My
 
-/private
-/demo
-/docs/custom
-/build/custom
-/build/vnstati
 /build/config.js
-/public/custom
 /public/config.js
 TODO.md
+.vscode
 *.code-workspace

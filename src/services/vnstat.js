@@ -1,3 +1,4 @@
+import { getConfig } from "./helpers";
 import { DateTime, Interval } from "luxon";
 
 class vnStat {
@@ -12,7 +13,7 @@ class vnStat {
   constructor(json) {
     if (json.interfaces.length === 0) return false;
     this._json = json;
-    this._units = vnStat.getUnits();
+    this._units = getConfig("units");
     this.prepare();
     return this;
   }
@@ -104,16 +105,16 @@ class vnStat {
       if (type === "total") {
         data.rx_formatted = this.formatTraffic(data.rx);
         data.tx_formatted = this.formatTraffic(data.tx);
-				data.total = data.rx + data.tx;
-				data.total_formatted = this.formatTraffic(data.total);
+        data.total = data.rx + data.tx;
+        data.total_formatted = this.formatTraffic(data.total);
       } else {
         data.forEach((item, index) => {
-					const isongoing = index === data.length - 1; // the last item
+          const isongoing = index === data.length - 1; // the last item
           const rate = this.calculateTrafficRate(item, type, isongoing);
           item.rx_formatted = this.formatTraffic(item.rx);
           item.tx_formatted = this.formatTraffic(item.tx);
-					item.total = item.rx + item.tx;
-					item.total_formatted = this.formatTraffic(item.total);
+          item.total = item.rx + item.tx;
+          item.total_formatted = this.formatTraffic(item.total);
           item.rate = rate;
           item.rate_formatted = this.formatTraffic(rate, 2, true);
         });
@@ -272,7 +273,7 @@ class vnStat {
   }
 
   /**
-   * Get units to format traffic data
+   * Get available units to format traffic data
    * @returns {object}
    */
   static getUnits() {
@@ -293,8 +294,7 @@ class vnStat {
         rates: ["bit/s", "kbit/s", "Mbit/s", "Gbit/s", "Tbit/s", "Pbit/s", "Ebit/s"], // prettier-ignore
       },
     };
-    const units = window.vnStat.units ?? "IEC";
-    return options[units] ?? options.IEC;
+    return options;
   }
 
   /**

@@ -1,12 +1,13 @@
 import React from "react";
 import { AppContext } from "../../AppContext";
+import { getConfig } from "../../services/helpers";
 import Widget from "../widget/Widget";
 import "./Menu.css";
 
 const Menu = ({ column, row }) => {
   const { reports, changeReports } = React.useContext(AppContext);
 	const iface = reports.getInterface();
-  const options = window.vnStat.interfaces;
+  const options = getConfig("interfaces");
   const current = options.find((el) => el.name === iface);
   const title = current.title ?? current.name;
 

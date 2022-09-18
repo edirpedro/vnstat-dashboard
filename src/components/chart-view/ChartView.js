@@ -9,11 +9,11 @@ import "./ChartView.css";
 
 const ChartView = ({ column, row, initial }) => {
   const { reports, __ } = React.useContext(AppContext);
-	const { tab, setTab } = React.useContext(ReportsContext);
+  const { tab, setTab } = React.useContext(ReportsContext);
 
-  const type = tab ?? initial;
+  let type = tab ?? initial;
   const traffic = reports.getTraffic(null, true);
-	const iface = reports.getInterface();
+  const iface = reports.getInterface();
 
   const menu = [
     { type: "fiveminute", title: __("Minutes") },
@@ -23,6 +23,13 @@ const ChartView = ({ column, row, initial }) => {
     { type: "year", title: __("Years") },
   ].filter((item) => traffic[item.type].length > 1);
 
+	// Check available type to maintain it on renders
+
+  let lastType = React.useRef(type);
+  const exists = menu.findIndex((el) => el.type === type);
+  if (exists === -1) type = lastType.current;
+  else lastType.current = type;
+
   return (
     <ChartViewRender
       column={column}
@@ -31,12 +38,10 @@ const ChartView = ({ column, row, initial }) => {
       type={type}
       traffic={traffic}
       setTab={setTab}
-			iface={iface}
+      iface={iface}
     />
   );
 };
-
-// Prevent render if the report is not part of the menu, without data to show on a chart
 
 const ChartViewRender = React.memo(
   ({ column, row, menu, type, traffic, setTab }) => (
@@ -57,9 +62,8 @@ const ChartViewRender = React.memo(
   ),
   (prev, next) => {
 		if (next.iface !== prev.iface) return false; // Interface has changed
-		if (next.type === prev.type) return true; // Report type is the same
-    const exists = next.menu.findIndex((el) => el.type === next.type); // Report type is not available
-    return exists === -1;
+    if (next.type === prev.type) return true; // Report type is the same
+		return false;
   }
 );
 
