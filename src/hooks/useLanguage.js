@@ -21,8 +21,27 @@ const useLanguage = () => {
     request();
   }, []);
 
-  function __(text) {
-    return translations[text] ?? text;
+  /**
+   * Translate texts using the loaded JSON
+   * __("Text to translate")
+   * __("Text with %s", "replaced strings") Use %s to point as many strings as you need.
+   * @returns {string}
+   */
+  function __() {
+    const text = arguments[0];
+    let translation = translations[text] ?? text;
+    if (arguments.length > 1) {
+      for (let i = 1; i < arguments.length; i++)
+        translation = translation.replace("%s", arguments[i]);
+      return (
+        <span
+          dangerouslySetInnerHTML={{
+            __html: translation,
+          }}
+        />
+      );
+    }
+    return translation;
   }
 
   return { __ };

@@ -2,12 +2,13 @@
 node_modules
 *.log
 *.map
+*.zip
 
 # Private
 
 /build/config.js
 /public/config.js
-/tasks/publish.sh
+/tasks/local.sh
 TODO.md
 .vscode
 *.code-workspace

@@ -1,6 +1,7 @@
 {
   "name": "vnstat-dashboard",
   "version": "0.1.0",
+  "url": "https://github.com/edirpedro/vnstat-dashboard",
   "private": true,
   "dependencies": {
     "@testing-library/jest-dom": "^5.16.5",
@@ -17,8 +18,9 @@
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
-    "docs": "bash tasks/docs.sh",
-	"publish": "bash tasks/publish.sh",
+    "build:release": "bash tasks/release.sh",
+	"build:docs": "bash tasks/docs.sh",
+	"build:local": "bash tasks/local.sh",
 	"test": "react-scripts test",
     "eject": "react-scripts eject"
   },

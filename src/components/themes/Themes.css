@@ -26,7 +26,7 @@
 	top: 15px;
 	right: 15px;
 	padding: 10px;
-	border: 2px solid var(--rx);
+	border: 1px solid var(--rx);
 	backdrop-filter: blur(5px);
 }
 #themes:hover .box {

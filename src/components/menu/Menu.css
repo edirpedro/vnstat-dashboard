@@ -45,3 +45,10 @@
 	background: var(--rx);
 	transition: all .2s linear;
 }
+.menu__list hr {
+	display: block;
+	margin: 0.5em 0;
+	height: 1px;
+	background: var(--rx);
+	border: 0;
+}
