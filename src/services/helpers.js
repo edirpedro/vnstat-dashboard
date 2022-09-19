@@ -3,20 +3,18 @@ import vnStat from "./vnstat";
 // Get configs
 
 export function getConfig(name) {
-	switch (name) {
-		case "units":
-			const units = vnStat.getUnits();
-			const option = window.vnStat_UNITS ?? "IEC";
-			return units[option] ?? "IEC";
-		case "api":
-			return window.vnStat_API;
-		case "interfaces":
-			return window.vnStat_INTERFACES ?? [];
-		case "themes":
-			return window.vnStat_THEMES ?? [];
-		default:
-			return null;
-	}
+  switch (name) {
+    case "units":
+      return vnStat.getUnits();
+    case "api":
+      return window.vnStat_API;
+    case "interfaces":
+      return window.vnStat_INTERFACES ?? [];
+    case "themes":
+      return window.vnStat_THEMES ?? [];
+    default:
+      return null;
+  }
 }
 
 // Return formatted traffic

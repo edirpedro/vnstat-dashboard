@@ -1,4 +1,3 @@
-import { getConfig } from "./helpers";
 import { DateTime, Interval } from "luxon";
 
 class vnStat {
@@ -13,7 +12,7 @@ class vnStat {
   constructor(json) {
     if (json.interfaces.length === 0) return false;
     this._json = json;
-    this._units = getConfig("units");
+    this._units = vnStat.getUnits();
     this.prepare();
     return this;
   }
@@ -273,31 +272,6 @@ class vnStat {
   }
 
   /**
-   * Get available units to format traffic data
-   * @returns {object}
-   */
-  static getUnits() {
-    const options = {
-      IEC: {
-        base: 1024,
-        prefixes: ["B", "KiB", "MiB", "GiB", "TiB", "PiB", "EiB"],
-        rates: ["bit/s", "Kibit/s", "Mibit/s", "Gibit/s", "Tibit/s", "Pibit/s", "Eibit/s"], // prettier-ignore
-      },
-      JEDEC: {
-        base: 1024,
-        prefixes: ["B", "KB", "MB", "GB", "TB", "PB", "EB"],
-        rates: ["bit/s", "Kbit/s", "Mbit/s", "Gbit/s", "Tbit/s", "Pbit/s", "Ebit/s"], // prettier-ignore
-      },
-      SI: {
-        base: 1000,
-        prefixes: ["B", "kB", "MB", "GB", "TB", "PB", "EB"],
-        rates: ["bit/s", "kbit/s", "Mbit/s", "Gbit/s", "Tbit/s", "Pbit/s", "Ebit/s"], // prettier-ignore
-      },
-    };
-    return options;
-  }
-
-  /**
    * Calculate traffic rate
    * https://github.com/vergoh/vnstat/blob/master/src/misc.c - getperiodseconds()
    * @param {data} entry Data to be calculated
@@ -362,6 +336,35 @@ class vnStat {
     if (interval === 0) return 0;
 
     return ((entry.rx + entry.tx) * 8) / interval;
+  }
+
+  /**
+   * Get current units to format traffic data
+   * @returns {}
+   */
+  static getUnits() {
+    const options = {
+      IEC: {
+				name: "IEC",
+        base: 1024,
+        prefixes: ["B", "KiB", "MiB", "GiB", "TiB", "PiB", "EiB"],
+        rates: ["bit/s", "Kibit/s", "Mibit/s", "Gibit/s", "Tibit/s", "Pibit/s", "Eibit/s"], // prettier-ignore
+      },
+      JEDEC: {
+				name: "JEDEC",
+        base: 1024,
+        prefixes: ["B", "KB", "MB", "GB", "TB", "PB", "EB"],
+        rates: ["bit/s", "Kbit/s", "Mbit/s", "Gbit/s", "Tbit/s", "Pbit/s", "Ebit/s"], // prettier-ignore
+      },
+      SI: {
+				name: "SI",
+        base: 1000,
+        prefixes: ["B", "kB", "MB", "GB", "TB", "PB", "EB"],
+        rates: ["bit/s", "kbit/s", "Mbit/s", "Gbit/s", "Tbit/s", "Pbit/s", "Ebit/s"], // prettier-ignore
+      },
+    };
+    const units = window.vnStat_UNITS ?? "IEC";
+   	return options[units] ?? options.IEC;
   }
 }
 

@@ -3,10 +3,11 @@ node_modules
 *.log
 *.map
 
-# My
+# Private
 
 /build/config.js
 /public/config.js
+/tasks/publish.sh
 TODO.md
 .vscode
 *.code-workspace
