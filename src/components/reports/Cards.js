@@ -35,7 +35,8 @@ const Cards = ({ type, traffic }) => {
   let data = [];
   let subtitle;
 
-  if (type !== "top") map.reverse();
+  if (type === "top") map = map.slice(0, 20);
+  else map.reverse();
 
   map.forEach((item) => {
     let text = theSubtitle(item);
