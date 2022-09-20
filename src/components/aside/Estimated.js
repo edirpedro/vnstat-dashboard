@@ -1,18 +1,16 @@
 import React from "react";
 import { AppContext } from "../../AppContext";
 import { DateTime, Interval } from "luxon";
-import Widget from "../widget/Widget";
 import Chart from "./Chart";
-import "./Estimated.css";
 
-const Estimated = ({ column, row }) => {
+const Estimated = () => {
   const { reports, __ } = React.useContext(AppContext);
   const traffic = reports.getTraffic();
   const updated = reports.getUpdated();
   const updatedObj = { ...updated.date, ...updated.time };
   const datetime = DateTime.fromObject({ ...updatedObj });
 
-	// https://github.com/vergoh/vnstat/blob/master/src/misc.c - getestimates()
+  // https://github.com/vergoh/vnstat/blob/master/src/misc.c - getestimates()
 
   function getEstimates(type) {
     let rx = 0;
@@ -67,14 +65,7 @@ const Estimated = ({ column, row }) => {
     { type: "year", title: __("Year"), ...getEstimates("year") },
   ];
 
-  return (
-    <Widget column={column} row={row} className="estimated">
-      <h2>{__("Estimated")}</h2>
-      {estimated.map((item) => (
-        <Chart key={Math.random()} {...item} />
-      ))}
-    </Widget>
-  );
+  return estimated.map((item) => <Chart key={Math.random()} {...item} />);
 };
 
 export default Estimated;

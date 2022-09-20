@@ -6,6 +6,7 @@ node_modules
 
 # Private
 
+/private
 /build/config.js
 /public/config.js
 /tasks/local.sh

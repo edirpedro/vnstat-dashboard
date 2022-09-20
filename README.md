@@ -47,4 +47,4 @@ You can build themes for this tool, to create a custom theme follow these steps.
 
 ## Credits
 
-[vnStat](https://github.com/vergoh/vnstat) from [Vergoh](https://github.com/vergoh), Photos from [kevin laminto](https://unsplash.com/@kxvn_lx) and [John Peters](https://unsplash.com/@johnphiker), wallpapers from the internet (couldn't find the authors), video from [@tunnelmotions](https://pixabay.com/users/tunnelmotions-12767861/).
+[vnStat](https://humdi.net/vnstat/) from [Vergoh](https://github.com/vergoh), Photos from [kevin laminto](https://unsplash.com/@kxvn_lx) and [John Peters](https://unsplash.com/@johnphiker), wallpapers from the internet (couldn't find the authors), video from [@tunnelmotions](https://pixabay.com/users/tunnelmotions-12767861/).

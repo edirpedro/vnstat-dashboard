@@ -1,24 +1,47 @@
-.averages {
+.aside {
 	flex-direction: column;
 	gap: 25px;
 }
-.averages h2 {
+.aside h2 {
+	cursor: pointer;
+	position: relative;
 	display: inline-block;
 	margin: 0;
-	padding: 0 10px;
+	padding: 0 20px 0 10px;
 	font-size: 14px;
 	text-transform: uppercase;
+	white-space: nowrap;
 	background: var(--rx);
 	color: var(--rx-text);
+	transition: all .2s linear;
+}
+.aside h2::after {
+	content: '';
+	position: absolute;
+	bottom: 9px;
+	right: 7px;
+	width: 5px;
+	height: 5px;
+	border-right: 1px solid var(--rx-text);
+	border-bottom: 1px solid var(--rx-text);
+	transform: rotate(45deg);
+}
+.aside h2:hover {
+	color: var(--tx-text);
+	background: var(--tx);
+	transition: all .2s linear;
+}
+.aside h2:hover::after {
+	border-color: var(--tx-text);
 }
 
 /* Items */
 
-.averages__item {
+.aside__item {
 	display: flex;
 	flex-wrap: wrap;
 }
-.averages__item h3 {
+.aside__item h3 {
 	flex: 0 0 100%;
 	margin: 0 0 10px;
 	font-size: 20px;
@@ -27,7 +50,7 @@
 
 /* List */
 
-.averages__list {
+.aside__list {
 	flex: 0 0 auto;
 	display: flex;
 	flex-direction: column;
@@ -35,53 +58,53 @@
 	margin: 0;
 	list-style: none;
 }
-.averages__list li {
+.aside__list li {
 	padding: 0;
 	margin: 0;
 	font-size: 13px;
 	line-height: 1.2;
 }
-.averages__list li.rx {
+.aside__list li.rx {
 	color: var(--rx);
 }
-.averages__list li.tx {
+.aside__list li.tx {
 	color: var(--tx);
 }
 
 /* Charts */
 
-.averages__chart {
+.aside__chart {
 	flex: 0 0 25px;
 	display: flex;
 	flex-direction: row;
 	gap: 3px;
 }
-.averages__chart div {
+.aside__chart div {
 	height: 100%;
 	background: var(--chart-background);
 }
-.averages__chart span {
+.aside__chart span {
 	display: block;
 	width: 5px;
 }
-.averages__chart .rx span {
+.aside__chart .rx span {
 	background: var(--rx);
 }
-.averages__chart .tx span {
+.aside__chart .tx span {
 	background: var(--tx);
 }
 
 /* Animation */
 
-.averages__chart span {
+.aside__chart span {
 	animation-delay: 100ms;
-	animation-name: averages;
+	animation-name: aside;
 	animation-duration: 1s;
 	animation-fill-mode: both;
 	animation-timing-function: linear;
 }
 
-@keyframes averages {
+@keyframes aside {
 	0% { height: 0%; }
 	100% { height: var(--height); }
 }
