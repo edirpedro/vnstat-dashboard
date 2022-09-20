@@ -1,12 +1,12 @@
 {
   "files": {
-    "main.css": "/vnstat-dashboard/static/css/main.379673a6.css",
-    "main.js": "/vnstat-dashboard/static/js/main.810a1ae5.js",
+    "main.css": "/vnstat-dashboard/static/css/main.42643caf.css",
+    "main.js": "/vnstat-dashboard/static/js/main.2523a831.js",
     "static/js/27.ea8bc128.chunk.js": "/vnstat-dashboard/static/js/27.ea8bc128.chunk.js",
     "index.html": "/vnstat-dashboard/index.html"
   },
   "entrypoints": [
-    "static/css/main.379673a6.css",
-    "static/js/main.810a1ae5.js"
+    "static/css/main.42643caf.css",
+    "static/js/main.2523a831.js"
   ]
 }

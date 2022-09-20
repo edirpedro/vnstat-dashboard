@@ -10,7 +10,7 @@ Check out the [Demo](https://edirpedro.github.io/vnstat-dashboard/)!
 
 ## How to install?
 
-1. Install [vnStat 2.9+](https://github.com/vergoh/vnstat) on your machine.
+1. Install [vnStat 2.0+](https://github.com/vergoh/vnstat).
 2. Download a copy of this repository, at the folder `/build` you can find all the app files.
 3. Copy `config-sample.js`, rename it to `config.js` and customize your settings.
 3. Follow one of the nexts to start a server:
@@ -47,4 +47,4 @@ You can build themes for this tool, to create a custom theme follow these steps.
 
 ## Credits
 
-Photos from [kevin laminto](https://unsplash.com/@kxvn_lx) and [John Peters](https://unsplash.com/@johnphiker), wallpapers from the internet (couldn't find the authors), video from [@tunnelmotions](https://pixabay.com/users/tunnelmotions-12767861/).
+[vnStat](https://github.com/vergoh/vnstat) from [Vergoh](https://github.com/vergoh), Photos from [kevin laminto](https://unsplash.com/@kxvn_lx) and [John Peters](https://unsplash.com/@johnphiker), wallpapers from the internet (couldn't find the authors), video from [@tunnelmotions](https://pixabay.com/users/tunnelmotions-12767861/).

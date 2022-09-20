@@ -34,6 +34,8 @@
 /* Tooltip */
 
 .bb-tooltip-container {
+	top: auto !important;
+	bottom: 25px;
 	padding: 5px 10px;
 	background: var(--card-highlight);
 }

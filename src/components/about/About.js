@@ -59,7 +59,7 @@ const About = ({ modalAbout }) => {
               https://github.com/edirpedro/vnstat-dashboard
             </a>
           </dd>
-          <dt>vnStat</dt>
+          <dt>vnStat:</dt>
           <dd>
             <a href="https://humdi.net/vnstat/">https://humdi.net/vnstat/</a>
           </dd>
