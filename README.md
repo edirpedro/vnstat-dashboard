@@ -24,11 +24,6 @@ To serve the PHP API, open the file `/api/vnstat.json.php` and make sure the env
 * Copy the content of the folder `/build` to your **/public** folder.
 * Setup `config.js` with your API like `http://vnstat.test/api/vnstat.json.php`.
 
-### Docker
-
-* Build a container using [vnStat Docker](https://github.com/vergoh/vnstat-docker).
-* Setup `config.js` with your API like `http://localhost:8685/json.cgi`.
-
 ## Translations
 
 At `/languages` folder you can write a file to translate the app. Just copy one the files and translate it. Don't forget to name your file with your language code, the app will load it automatically according to your browser language.
