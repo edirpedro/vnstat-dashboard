@@ -16,6 +16,5 @@ var vnStat_INTERFACES = [
 
 // Themes
 var vnStat_THEMES = [
-	{ title: "My Theme", file: "/my-themes/file.css" },
-	{ title: "My Theme", file: "/my-themes/file.css", video: "/my-themes/video.mp4" }
+	{ title: "My Theme", file: "/my-themes/file.css" }
 ];

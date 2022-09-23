@@ -9,8 +9,7 @@ const useTheme = () => {
     { title: "Red", file: "/static/themes/red.css" },
     { title: "Cyberpunk", file: "/static/themes/cyberpunk-2077.css" },
     { title: "The Division", file: "/static/themes/the-division.css" },
-    { title: "Gradients", file: "/static/themes/gradients.css" },
-    { title: "Tunnel", file: "/static/themes/tunnel.css", video: "/static/media/tunnelmotions-27438.mp4" }, // prettier-ignore
+    { title: "Gradients", file: "/static/themes/gradients.css" }
   ];
   const customThemes = getConfig("themes");
   if (customThemes) themes = [...themes, ...customThemes];

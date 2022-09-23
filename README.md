@@ -21,7 +21,7 @@ To serve the PHP API, open the file `/api/vnstat.json.php` and make sure the env
 
 * Install a server like [Laravel Valet](https://laravel.com/docs/valet), [Local](https://localwp.com/), [MAMP](https://www.mamp.info/en/mamp), [XAMPP](https://www.apachefriends.org/) or another of your choice.
 * Create a domain on your Server, like `vnstat.test`.
-* Copy the content of the folder `/build` to your **/public** folder.
+* Copy the content of the folder `/build` to your `/public` folder.
 * Setup `config.js` with your API like `http://vnstat.test/api/vnstat.json.php`.
 
 ## Translations
@@ -42,4 +42,4 @@ You can build themes for this tool, to create a custom theme follow these steps.
 
 ## Credits
 
-[vnStat](https://humdi.net/vnstat/) from [Vergoh](https://github.com/vergoh), Photos from [kevin laminto](https://unsplash.com/@kxvn_lx) and [John Peters](https://unsplash.com/@johnphiker), wallpapers from the internet (couldn't find the authors), video from [@tunnelmotions](https://pixabay.com/users/tunnelmotions-12767861/).
+[vnStat](https://humdi.net/vnstat/) from [Vergoh](https://github.com/vergoh), Photos from [kevin laminto](https://unsplash.com/@kxvn_lx) and [John Peters](https://unsplash.com/@johnphiker), wallpapers from the internet (couldn't find the authors).

@@ -10,24 +10,19 @@ Check out the [Demo](https://edirpedro.github.io/vnstat-dashboard/)!
 
 ## How to install?
 
-1. Install [vnStat 2.0+](https://github.com/vergoh/vnstat).
-2. Download a copy of this repository, at the folder `/build` you can find all the app files.
-3. Copy `config-sample.js`, rename it to `config.js` and customize your settings.
-3. Follow one of the nexts to start a server:
+* Install [vnStat 2.0+](https://github.com/vergoh/vnstat).
+* Download a copy of this repository, in the folder `/build` you can find all the app files.
+* Copy `config-sample.js`, rename it to `config.js` and customize your settings.
+* Follow one of the nexts to start a server for the API:
 
 ### PHP
 
-To use the PHP API, open the file `/api/vnstat.json.php` and make sure the environment is correct to find your vnStat installation.
+To serve the PHP API, open the file `/api/vnstat.json.php` and make sure the environment path is correct to find your vnStat installation.
 
-#### Built-in Server
-
-1. Open your Terminal application and go to the folder `/build`.
-2. Launch the server `php -S localhost:8000`.
-
-#### Another Servers
-
-1. Create a domain on your PHP Server, like `vnstat.test`.
-2. Copy the content of the folder `/build` to your **public** folder.
+* Install a server like [Laravel Valet](https://laravel.com/docs/valet), [Local](https://localwp.com/), [MAMP](https://www.mamp.info/en/mamp), [XAMPP](https://www.apachefriends.org/) or another of your choice.
+* Create a domain on your Server, like `vnstat.test`.
+* Copy the content of the folder `/build` to your `/public` folder.
+* Setup `config.js` with your API like `http://vnstat.test/api/vnstat.json.php`.
 
 ## Translations
 
@@ -37,14 +32,14 @@ At `/languages` folder you can write a file to translate the app. Just copy one 
 
 You can build themes for this tool, to create a custom theme follow these steps. 
 
-1. Copy one of the themes from the folder `/static/themes`
-2. Rename the file to your name choice,
-3. Add your colors on it or any other CSS code you want.
-4. Open the `config.js` file and add it to the theme list to get it available on the dashboard.
-5. Theme menu is located on the top right corner of the screen!
+* Copy one of the themes from the folder `/static/themes`
+* Rename the file to your name choice,
+* Add your colors on it or any other CSS code you want.
+* Open the `config.js` file and add it to the theme list to get it available on the dashboard.
+* Theme menu is located on the top right corner of the screen!
 
 ![vnStat Dashboard](https://github.com/edirpedro/vnstat-dashboard/blob/main/public/static/media/screenshot-2.jpg)
 
 ## Credits
 
-[vnStat](https://humdi.net/vnstat/) from [Vergoh](https://github.com/vergoh), Photos from [kevin laminto](https://unsplash.com/@kxvn_lx) and [John Peters](https://unsplash.com/@johnphiker), wallpapers from the internet (couldn't find the authors), video from [@tunnelmotions](https://pixabay.com/users/tunnelmotions-12767861/).
+[vnStat](https://humdi.net/vnstat/) from [Vergoh](https://github.com/vergoh), Photos from [kevin laminto](https://unsplash.com/@kxvn_lx) and [John Peters](https://unsplash.com/@johnphiker), wallpapers from the internet (couldn't find the authors).
