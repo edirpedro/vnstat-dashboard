@@ -11,6 +11,6 @@ cp LICENSE ./build
 
 # Zip
 cd build
-rm -f config.js
+rm -f api/demo.json
 VERSION=$(npm pkg get version | sed 's/"//g')
 zip -r vnstat-dashboard-$VERSION.zip *

@@ -1,26 +1,35 @@
 import React from "react";
-import useLanguage from "./hooks/useLanguage.js";
-import useReports from "./hooks/useReports.js";
-import useTheme from "./hooks/useTheme.js";
+import { LanguagesHook } from "./hooks/useLanguages.js";
+import { ReportsHook } from "./hooks/useReports.js";
+import { SettingsHook } from "./hooks/useSettings.js";
+import { ThemesHook } from "./hooks/useThemes.js";
 
 export const AppContext = React.createContext();
 
 const AppProvider = ({ children }) => {
-  const { __ } = useLanguage();
-	const { theme, themes, setTheme } = useTheme();
-	const { reports, changeReports } = useReports();
-  
-	if (!reports) return null;
-	
+  const Settings = SettingsHook();
+  const Languages = LanguagesHook();
+  const Themes = ThemesHook(Settings);
+  const Reports = ReportsHook(Settings);
+
+  function isReady() {
+		// Wait all asynchronous
+    if (!Settings.ifaces) return false;
+		if (!Languages.translations) return false;
+    if (!Themes.theme) return false;
+    if (!Reports.reports) return false;
+    return true;
+  }
+
+  if (!isReady()) return null;
+
   return (
     <AppContext.Provider
       value={{
-        reports,
-        changeReports,
-        theme,
-				themes,
-        setTheme,
-				__
+        Languages,
+        Themes,
+        Reports,
+        Settings,
       }}
     >
       {children}

@@ -262,8 +262,8 @@ class vnStat {
    * @param {boolean} rate Return in bit rate
    * @returns {string}
    */
-  formatTraffic(bytes, decimals = 2, rate = false) {
-    const prefixes = rate ? this._units.rates : this._units.prefixes;
+  formatTraffic(bytes, decimals = 2, bits = false) {
+    const prefixes = bits ? this._units.bits : this._units.bytes;
     if (bytes === 0) return "0 " + prefixes[0];
     const k = this._units.base;
     const dm = decimals < 0 ? 0 : decimals;
@@ -343,28 +343,36 @@ class vnStat {
    * @returns {}
    */
   static getUnits() {
-    const options = {
+    const options = vnStat.getUnitsOptions();
+    const name = window.vnStat_SETTINGS?.units ?? "IEC";
+    return options[name] ?? options.IEC;
+  }
+
+  /**
+   * Get units options
+   * @returns {object}
+   */
+  static getUnitsOptions() {
+    return {
       IEC: {
-				name: "IEC",
+        name: "IEC",
         base: 1024,
-        prefixes: ["B", "KiB", "MiB", "GiB", "TiB", "PiB", "EiB"],
-        rates: ["bit/s", "Kibit/s", "Mibit/s", "Gibit/s", "Tibit/s", "Pibit/s", "Eibit/s"], // prettier-ignore
+        bytes: ["B", "KiB", "MiB", "GiB", "TiB", "PiB", "EiB"],
+        bits: ["bit/s", "Kibit/s", "Mibit/s", "Gibit/s", "Tibit/s", "Pibit/s", "Eibit/s"], // prettier-ignore
       },
       JEDEC: {
-				name: "JEDEC",
+        name: "JEDEC",
         base: 1024,
-        prefixes: ["B", "KB", "MB", "GB", "TB", "PB", "EB"],
-        rates: ["bit/s", "Kbit/s", "Mbit/s", "Gbit/s", "Tbit/s", "Pbit/s", "Ebit/s"], // prettier-ignore
+        bytes: ["B", "KB", "MB", "GB", "TB", "PB", "EB"],
+        bits: ["bit/s", "Kbit/s", "Mbit/s", "Gbit/s", "Tbit/s", "Pbit/s", "Ebit/s"], // prettier-ignore
       },
       SI: {
-				name: "SI",
+        name: "SI",
         base: 1000,
-        prefixes: ["B", "kB", "MB", "GB", "TB", "PB", "EB"],
-        rates: ["bit/s", "kbit/s", "Mbit/s", "Gbit/s", "Tbit/s", "Pbit/s", "Ebit/s"], // prettier-ignore
+        bytes: ["B", "kB", "MB", "GB", "TB", "PB", "EB"],
+        bits: ["bit/s", "kbit/s", "Mbit/s", "Gbit/s", "Tbit/s", "Pbit/s", "Ebit/s"], // prettier-ignore
       },
     };
-    const units = window.vnStat_UNITS ?? "IEC";
-   	return options[units] ?? options.IEC;
   }
 }
 

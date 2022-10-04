@@ -1,24 +1,21 @@
 import React from "react";
 import { DateTime } from "luxon";
+import { AppContext } from "../AppContext";
 
-const useLanguage = () => {
-  const [translations, setTranslations] = React.useState({});
+export const LanguagesHook = () => {
+  const [translations, setTranslations] = React.useState();
 
   React.useEffect(() => {
     const local = DateTime.local();
-    async function request() {
-      try {
-        const response = await fetch(
-          process.env.PUBLIC_URL + "/languages/" + local.locale + ".json"
-        );
-        const json = await response.json();
-        if (!response.ok) throw new Error();
+    fetch(process.env.PUBLIC_URL + "/languages/" + local.locale + ".json")
+      .then((response) => response.json())
+      .then((json) => {
         setTranslations(json);
-      } catch (e) {
+      })
+      .catch((e) => {
         console.log("Language file for '" + local.locale + "' was not found.");
-      }
-    }
-    request();
+        setTranslations({});
+      });
   }, []);
 
   /**
@@ -44,7 +41,12 @@ const useLanguage = () => {
     return translation;
   }
 
-  return { __ };
+  return { translations, __ };
 };
 
-export default useLanguage;
+const useLanguages = () => {
+  const { Languages } = React.useContext(AppContext);
+  return { ...Languages };
+};
+
+export default useLanguages;

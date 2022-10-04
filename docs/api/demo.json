@@ -2,7 +2,7 @@
 "vnstatversion":"2.9",
 "jsonversion":"2",
 "interfaces":[{
-"name":"en0","alias":"",
+"name":"en0","alias":"Network",
 "created":{"date":{"year":2019,"month":8,"day":8}},
 "updated":{"date":{"year":2022,"month":9,"day":14},"time":{"hour":10,"minute":15}},
 "traffic":{

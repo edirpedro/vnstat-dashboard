@@ -1,5 +1,5 @@
 import React from "react";
-import "./Widget.css";
+import "./Widget.scss";
 
 const Widget = ({ column, row, className, children }) => {
   return (

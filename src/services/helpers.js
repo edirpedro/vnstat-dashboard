@@ -1,27 +1,10 @@
 import vnStat from "./vnstat";
 
-// Get configs
-
-export function getConfig(name) {
-  switch (name) {
-    case "units":
-      return vnStat.getUnits();
-    case "api":
-      return window.vnStat_API;
-    case "interfaces":
-      return window.vnStat_INTERFACES ?? [];
-    case "themes":
-      return window.vnStat_THEMES ?? [];
-    default:
-      return null;
-  }
-}
-
 // Return formatted traffic
 
 export function formatTraffic(bytes, decimals = 2) {
-  const units = getConfig("units");
-  const prefixes = units.prefixes;
+  const units = vnStat.getUnits();
+  const prefixes = units.bytes;
   if (bytes === 0) return "0 " + prefixes[0];
   const k = units.base;
   const dm = decimals < 0 ? 0 : decimals;

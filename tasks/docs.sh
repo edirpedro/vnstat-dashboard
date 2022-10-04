@@ -4,17 +4,11 @@
 cd "$(dirname "$0")"
 cd ..
 
-# Compile with git pages path
+# Compile for git pages
+export REACT_APP_API_URL=/vnstat-dashboard/api/demo.json
 export BUILD_PATH=docs
 export PUBLIC_URL=/vnstat-dashboard
 npm run build
-
-# Write config.js
-echo "
-var vnStat_UNITS = 'IEC';
-var vnStat_API = '/vnstat-dashboard/api/demo.json';
-var vnStat_INTERFACES = [{ name: 'en0', title: 'Network' }];
-" > docs/config.js
 
 # Write .nojekyll
 echo "" > docs/.nojekyll

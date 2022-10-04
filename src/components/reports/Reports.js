@@ -1,12 +1,14 @@
 import React from "react";
-import { AppContext } from "../../AppContext";
+import useReports from "../../hooks/useReports";
+import useLanguages from "../../hooks/useLanguages";
 import { ReportsContext } from "./ReportsContext";
 import Widget from "../widget/Widget";
 import Cards from "./Cards";
-import "./Reports.css";
+import "./Reports.scss";
 
 const Reports = ({ column, row, initial }) => {
-  const { reports, __ } = React.useContext(AppContext);
+	const { __ } = useLanguages();
+  const { reports } = useReports();
 	const { tab, setTab } = React.useContext(ReportsContext);
 
   const type = tab ?? initial;

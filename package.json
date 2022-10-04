@@ -13,15 +13,16 @@
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-scripts": "5.0.1",
+    "sass": "^1.55.0",
     "web-vitals": "^2.1.4"
   },
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
     "build:release": "bash tasks/release.sh",
-	"build:docs": "bash tasks/docs.sh",
-	"build:local": "bash tasks/local.sh",
-	"test": "react-scripts test",
+    "build:docs": "bash tasks/docs.sh",
+    "build:local": "bash tasks/local.sh",
+    "test": "react-scripts test",
     "eject": "react-scripts eject"
   },
   "eslintConfig": {

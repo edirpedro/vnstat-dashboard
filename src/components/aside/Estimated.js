@@ -1,10 +1,12 @@
 import React from "react";
-import { AppContext } from "../../AppContext";
 import { DateTime, Interval } from "luxon";
 import Chart from "./Chart";
+import useReports from "../../hooks/useReports";
+import useLanguages from "../../hooks/useLanguages";
 
 const Estimated = () => {
-  const { reports, __ } = React.useContext(AppContext);
+	const { __ } = useLanguages();
+  const { reports } = useReports();
   const traffic = reports.getTraffic();
   const updated = reports.getUpdated();
   const updatedObj = { ...updated.date, ...updated.time };

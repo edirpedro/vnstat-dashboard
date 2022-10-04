@@ -1,9 +1,11 @@
 import React from "react";
-import { AppContext } from "../../AppContext";
+import useLanguages from "../../hooks/useLanguages";
+import useReports from "../../hooks/useReports";
 import Chart from "./Chart";
 
 const Average = () => {
-  const { reports, __ } = React.useContext(AppContext);
+	const { __ } = useLanguages();
+  const { reports } = useReports();
   let average = [];
   let count;
   let traffic = reports.getTraffic();

@@ -20,5 +20,11 @@
 	"Version": "Versão",
 	"Author": "Autor",
 	"Settings": "Configurações",
-	"available": "disponível"
+	"available": "disponível",
+	"Cancel": "Cancelar",
+	"Save": "Salvar",
+	"Units": "Unidades",
+	"Bar": "Barra",
+	"Area": "Área",
+	"Logarithmic": "Logarítmico"
 }

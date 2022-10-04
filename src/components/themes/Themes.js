@@ -1,9 +1,11 @@
 import React from "react";
-import { AppContext } from "../../AppContext";
-import "./Themes.css"
+import useLanguages from "../../hooks/useLanguages";
+import useThemes from "../../hooks/useThemes";
+import "./Themes.scss"
 
 const Themes = () => {
-  const { theme, themes, setTheme, __ } = React.useContext(AppContext);
+	const { __ } = useLanguages();
+  const { theme, themes, changeTheme } = useThemes();
 
   return (
     <div id="themes">
@@ -12,7 +14,7 @@ const Themes = () => {
         {themes.map((item, index) => (
           <button
             key={index}
-            onClick={() => setTheme(item)}
+            onClick={() => changeTheme(item)}
             className={item.file === theme.file ? "active" : null}
           >
             {item.title}

@@ -1,0 +1,37 @@
+.logo {
+	display: flex;
+	align-items: center;
+	justify-content: flex-end;
+
+	h1 {
+		font-size: 72px;
+		font-weight: 100;
+		line-height: 1;
+		margin: 0;
+	}
+
+	small {
+		display: block;
+		font-size: 10px;
+		text-align: right;
+		margin-right: 10px;
+	}
+}
+
+/* Animation */
+
+.logo {
+	animation-name: logo;
+	animation-duration: 1s;
+	animation-timing-function: linear;
+}
+
+@keyframes logo {
+	0% {
+		opacity: 0;
+	}
+
+	100% {
+		opacity: 1;
+	}
+}

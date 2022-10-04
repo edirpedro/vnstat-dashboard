@@ -1,12 +1,12 @@
 import React from "react";
-import { AppContext } from "../../AppContext";
 import Widget from "../widget/Widget";
 import Estimated from "./Estimated";
 import Average from "./Average";
-import "./Aside.css";
+import useLanguages from "../../hooks/useLanguages";
+import "./Aside.scss";
 
 const Aside = ({ column, row }) => {
-  const { __ } = React.useContext(AppContext);
+  const { __ } = useLanguages();
   const [state, setState] = React.useState(true);
 
   return (

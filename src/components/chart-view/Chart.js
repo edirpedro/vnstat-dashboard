@@ -1,17 +1,18 @@
 import React from "react";
 import { formatTraffic } from "../../services/helpers";
-import { bb, areaSpline, zoom } from "billboard.js";
+import { bb, bar, areaSpline, zoom } from "billboard.js";
 import { DateTime } from "luxon";
+import useSettings from "../../hooks/useSettings";
 
 const Chart = ({ type, traffic }) => {
+  const { settings } = useSettings();
   const ref = React.useRef();
   const instance = React.useRef();
 
-  let defaults = {
+  const defaults = {
     data: {
       x: "x",
       columns: [],
-      type: areaSpline(),
       // groups: [["RX", "TX"]], // This makes log scales oversize the chart!
     },
     zoom: {
@@ -28,6 +29,10 @@ const Chart = ({ type, traffic }) => {
     },
     area: {
       linearGradient: true,
+    },
+    bar: {
+			// linearGradient: true,
+      padding: 3,
     },
     legend: {
       position: "inset",
@@ -70,29 +75,6 @@ const Chart = ({ type, traffic }) => {
       },
     },
   };
-
-  // Log Scales to make low traffic appears on chart
-
-  switch (type) {
-    case "fiveminute":
-    case "hour":
-      defaults.axis.y = {
-        show: false,
-        type: "log",
-        min: 1024, // KB
-        max: Math.pow(1024, 4), // TB
-      };
-      break;
-    case "day":
-      defaults.axis.y = {
-        show: false,
-        type: "log",
-        min: Math.pow(1024, 2), // MB
-        max: Math.pow(1024, 4), // TB
-      };
-      break;
-    default:
-  }
 
   // Format Tooltip titles
 
@@ -169,11 +151,34 @@ const Chart = ({ type, traffic }) => {
     return [x.at(-start), x.at(-1)];
   }
 
-  // Define chart options according to report type
+  // Get selected settings
+
+  function getChartType() {
+    if (settings[`chart_${type}_type`] === "bar") return bar();
+    return areaSpline();
+  }
+
+  function getChartLog() {
+    if (settings[`chart_${type}_log`]) {
+      let logMin = type === "day" ? Math.pow(1000, 2) : 1000; // MB : KB
+      return {
+        show: false,
+        type: "log",
+        min: logMin,
+        max: Math.pow(1000, 4), // TB
+      };
+    }
+    return { show: false };
+  }
+
+  // Define chart options according to report type and settings
 
   let options = { ...defaults };
   let zoomRange;
   const columns = getColumns();
+
+  options.data.type = getChartType();
+  options.axis.y = getChartLog();
 
   switch (type) {
     case "fiveminute":
@@ -192,8 +197,18 @@ const Chart = ({ type, traffic }) => {
     case "month":
       zoomRange = getZoomRange(columns, 12);
       break;
+    case "year":
+      zoomRange = getZoomRange(columns, 10);
+      break;
     default:
   }
+
+	// FIXME: Billboard zoom doesn't work well with bars
+
+	if (settings[`chart_${type}_type`] === "bar") {
+		zoomRange = false; 
+		options.axis.x.padding = {};
+	}
 
   // Initiate
 

@@ -1,11 +1,13 @@
 import React from "react";
-import { AppContext } from "../../AppContext";
+import useLanguages from "../../hooks/useLanguages";
+import useReports from "../../hooks/useReports";
 import Widget from "../widget/Widget";
 import Chart from "./Chart";
-import "./Summary.css";
+import "./Summary.scss";
 
 const Summary = ({ column, row }) => {
-  const { reports, __ } = React.useContext(AppContext);
+	const { __ } = useLanguages();
+  const { reports } = useReports();
 
   const zero = { rx: 0, tx: 0 };
 

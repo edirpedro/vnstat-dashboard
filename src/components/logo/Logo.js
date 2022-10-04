@@ -1,10 +1,10 @@
 import React from "react";
-import { AppContext } from "../../AppContext";
+import useReports from "../../hooks/useReports";
 import Widget from "../widget/Widget";
-import "./Logo.css";
+import "./Logo.scss";
 
 const Logo = ({ column, row }) => {
-  const { reports } = React.useContext(AppContext);	
+  const { reports } = useReports();
   const version = reports.getVersion();
 
   return (

@@ -1,10 +1,10 @@
 import React from "react";
-import { AppContext } from "../../AppContext";
+import useReports from "../../hooks/useReports";
 
 export const ReportsContext = React.createContext();
 
 const ReportsProvider = ({ children }) => {
-  const { reports } = React.useContext(AppContext);
+  const { reports } = useReports();
   const [tab, setTab] = React.useState();
   const current = reports.getInterface();
   const iface = React.useRef(current);

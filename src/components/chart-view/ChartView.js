@@ -1,14 +1,16 @@
 import React from "react";
-import { AppContext } from "../../AppContext";
+import useReports from "../../hooks/useReports";
+import useLanguages from "../../hooks/useLanguages";
 import { ReportsContext } from "../reports/ReportsContext";
 import Widget from "../widget/Widget";
 import Chart from "./Chart";
 import "billboard.js/dist/billboard.css";
-import "./billboard.css";
-import "./ChartView.css";
+import "./billboard.scss";
+import "./ChartView.scss";
 
 const ChartView = ({ column, row, initial }) => {
-  const { reports, __ } = React.useContext(AppContext);
+	const { __ } = useLanguages();
+  const { reports } = useReports();
   const { tab, setTab } = React.useContext(ReportsContext);
 
   let type = tab ?? initial;

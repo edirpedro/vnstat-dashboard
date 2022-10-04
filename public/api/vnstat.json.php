@@ -1,37 +1,58 @@
 <?php
 
 // Where to find the binary for vnstat?
-
 putenv('PATH=/opt/homebrew/bin'); 
 
-// vnStat API
+/**
+ * vnStat API
+ */
 
-$json = [ 'error' => true, 'message' => null ];
+// Return a list of interfaces
+
+if ( isset($_GET['dbiflist']) ) {
+	$data = vnstat('f 1'); // Return something to read available interfaces
+	foreach ( $data->interfaces as &$item )
+		unset($item->traffic);
+	send($data);
+}
+
+// Building commands
+
 $command = '';
 
-// Set Interface
-
-if ( ! empty($_GET['interface']) ) {
+if ( isset($_GET['interface']) ) {
 	$interface = preg_replace('/[^\w]/', '+', $_GET['interface']);
 	$command .= "-i $interface";
 }
 
-// Getting JSON
+// Execute
 
-if ( empty($command) ) {
-	http_response_code(404);
-	$json['message'] = 'Error: vnStat API has nothing to return!';
-} else {
+$data = vnstat($command);
+send($data);
+
+// Get the JSON or send error message
+
+function vnstat($command) {
+	if ( empty($command) ) send_error('Error: vnStat API has nothing to return!');
 	$result = shell_exec("vnstat --json $command");
-	$decode = json_decode($result);
-	if ( json_last_error() === JSON_ERROR_NONE ) {
-		$json = $decode;
-	} else {
-		http_response_code(404);
-		$json['message'] = $result;
-	}
+	$data = json_decode($result);
+	if ( json_last_error() === JSON_ERROR_NONE ) return $data;
+	send_error($result);
 }
 
-// header('Access-Control-Allow-Origin: *');
-header('Content-Type: application/json; charset=utf-8');
-echo json_encode($json);
+// Send error message
+
+function send_error($message) {
+	$data = [ 'code' => 'error', 'message' => $message ];
+	http_response_code(400);
+	send($data);
+}
+
+// Send JSON
+
+function send($data) {
+	// header('Access-Control-Allow-Origin: *');
+	header('Content-Type: application/json; charset=utf-8');
+	echo json_encode($data);
+	exit;
+}

@@ -3,10 +3,13 @@
 *::after {
 	box-sizing: border-box;
 }
+
 ::-webkit-scrollbar {
 	display: none;
 }
+
 body {
+	scrollbar-width: none;
 	position: relative;
 	padding: 0;
 	margin: 0;
@@ -16,9 +19,16 @@ body {
 	color: var(--text);
 	background: var(--background);
 }
-h1, h2, h3, h4, h5, h6 {
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
 	font-weight: 300;
 }
+
 button {
 	cursor: pointer;
 	padding: 0;
