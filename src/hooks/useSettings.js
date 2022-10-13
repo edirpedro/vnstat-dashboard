@@ -8,6 +8,8 @@ export const SettingsHook = () => {
     units: "IEC",
     interface: "",
     theme: {},
+		reports_initial: "day",
+		chart_initial: "fiveminute",
     chart_fiveminute_log: true,
     chart_fiveminute_type: "area",
     chart_hour_log: true,

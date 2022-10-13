@@ -21,6 +21,14 @@ const Settings = ({ close }) => {
       value.name + " (" + value.bytes[1] + ", " + value.bits[1] + ")";
   });
 
+  let initials = {
+    fiveminute: __("Minutes"),
+    hour: __("Hours"),
+    day: __("Days"),
+    month: __("Months"),
+    year: __("Years"),
+  };
+
   function onSubmit(e) {
     e.preventDefault();
     setSettings(form);
@@ -35,6 +43,16 @@ const Settings = ({ close }) => {
       <h1>{__("Settings")}</h1>
       <Field name="units" label="Units">
         <Select name="units" options={units} {...field} />
+      </Field>
+      <Field name="reports_initial" label="Initial report">
+        <Select
+          name="reports_initial"
+          options={{ top: __("Top"), ...initials }}
+          {...field}
+        />
+      </Field>
+      <Field name="chart_initial" label="Initial chart">
+        <Select name="chart_initial" options={initials} {...field} />
       </Field>
       <FieldChart label="Minutes" type="fiveminute" {...field} />
       <FieldChart label="Hours" type="hour" {...field} />

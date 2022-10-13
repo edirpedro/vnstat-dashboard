@@ -1,17 +1,19 @@
 import React from "react";
 import useReports from "../../hooks/useReports";
 import useLanguages from "../../hooks/useLanguages";
+import useSettings from "../../hooks/useSettings";
 import { ReportsContext } from "./ReportsContext";
 import Widget from "../widget/Widget";
 import Cards from "./Cards";
 import "./Reports.scss";
 
-const Reports = ({ column, row, initial }) => {
-	const { __ } = useLanguages();
+const Reports = ({ column, row }) => {
+  const { __ } = useLanguages();
   const { reports } = useReports();
-	const { tab, setTab } = React.useContext(ReportsContext);
+  const { settings } = useSettings();
+  const { tab, setTab } = React.useContext(ReportsContext);
 
-  const type = tab ?? initial;
+  const type = tab ?? settings.reports_initial;
   const traffic = reports.getTraffic(type);
 
   const menu = [

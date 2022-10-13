@@ -1,6 +1,7 @@
 import React from "react";
 import useReports from "../../hooks/useReports";
 import useLanguages from "../../hooks/useLanguages";
+import useSettings from "../../hooks/useSettings";
 import { ReportsContext } from "../reports/ReportsContext";
 import Widget from "../widget/Widget";
 import Chart from "./Chart";
@@ -8,12 +9,14 @@ import "billboard.js/dist/billboard.css";
 import "./billboard.scss";
 import "./ChartView.scss";
 
-const ChartView = ({ column, row, initial }) => {
-	const { __ } = useLanguages();
+const ChartView = ({ column, row }) => {
+  const { __ } = useLanguages();
   const { reports } = useReports();
+  const { settings } = useSettings();
   const { tab, setTab } = React.useContext(ReportsContext);
 
-  let type = tab ?? initial;
+  let lastType = React.useRef();
+  let type = tab ?? settings.chart_initial;
   const traffic = reports.getTraffic(null, true);
   const iface = reports.getInterface();
 
@@ -25,11 +28,10 @@ const ChartView = ({ column, row, initial }) => {
     { type: "year", title: __("Years") },
   ].filter((item) => traffic[item.type].length > 1);
 
-	// Check available type to maintain it on renders
+  // Check available type to maintain it on renders
 
-  let lastType = React.useRef(type);
   const exists = menu.findIndex((el) => el.type === type);
-  if (exists === -1) type = lastType.current;
+  if (exists === -1) type = lastType.current ?? "fiveminute";
   else lastType.current = type;
 
   return (
@@ -63,9 +65,9 @@ const ChartViewRender = React.memo(
     </Widget>
   ),
   (prev, next) => {
-		if (next.iface !== prev.iface) return false; // Interface has changed
+    if (next.iface !== prev.iface) return false; // Interface has changed
     if (next.type === prev.type) return true; // Report type is the same
-		return false;
+    return false;
   }
 );
 

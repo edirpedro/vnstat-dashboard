@@ -19,8 +19,8 @@ function App() {
         <Aside column="1/span 2" row="2/span 6" />
         <Summary column="12/span 5" row="1/span 2" />
         <ReportsProvider>
-          <Reports column="3/span 9" row="1/span 7" initial="day" />
-          <ChartView column="1/span 16" row="8/span 2" initial="hour" />
+          <Reports column="3/span 9" row="1/span 7" />
+          <ChartView column="1/span 16" row="8/span 2" />
         </ReportsProvider>
       </Dashboard>
     </AppProvider>
