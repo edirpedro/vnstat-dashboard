@@ -1,0 +1,51 @@
+.reports {
+	flex-direction: column;
+	width: 100%;
+	height: 100%;
+}
+
+// Caption
+
+.caption {
+	position: relative;
+	width: 100%;
+	padding: 0 15px;
+
+	h2 {
+		margin: 0;
+		font-size: 25px;
+		text-transform: uppercase;
+	}
+}
+
+// Menu
+
+.menu {
+	position: absolute;
+	top: 0;
+	right: 15px;
+	display: flex;
+	justify-content: right;
+
+	button {
+		cursor: pointer;
+		padding: 4px 10px;
+		font-size: 13px;
+		font-weight: 400;
+		background: var(--rx);
+		color: var(--rx-text);
+		opacity: 1;
+		transition: all .2s linear;
+
+		&:hover {
+			background: var(--tx);
+			color: var(--tx-text);
+			transition: all .2s linear;
+		}
+
+		&:global(.active) {
+			color: var(--rx);
+			background: transparent;
+		}
+	}
+}

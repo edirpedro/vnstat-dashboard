@@ -1,0 +1,16 @@
+.button {
+	display: inline-block;
+	padding: 10px 20px;
+	min-width: 100px;
+	color: var(--text);
+	background: transparent;
+	border: 1px solid var(--rx);
+	transition: all .2s linear;
+
+	&:focus,
+	&:hover {
+		color: var(--rx-text);
+		background: var(--rx);
+		transition: all .2s linear;
+	}
+}

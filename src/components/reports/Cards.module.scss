@@ -1,0 +1,142 @@
+
+.cards {
+	display: flex;
+	width: 100%;
+	overflow: hidden;
+
+	ul {
+		display: grid;
+		grid-gap: 15px;
+		grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+		width: 100%;
+		padding: 25px 0;
+		margin: 0;
+		list-style: none;
+		overflow: auto;
+		scrollbar-width: none;
+		-webkit-mask-image: linear-gradient(to bottom, transparent, #000 5%, #000 95%, transparent);
+	}
+
+	li {
+		position: relative;
+		display: flex;
+		flex-direction: column;
+		padding: 15px;
+		margin: 0;
+		font-size: 14px;
+		line-height: 1.2;
+		background: var(--card);
+		transition: all .2s linear;
+	}
+
+	li:hover {
+		background: var(--card-highlight);
+		transition: all .2s linear;
+	}
+
+	.subtitle {
+		align-items: center;
+		justify-content: center;
+		font-size: 16px;
+		text-align: center;
+		text-transform: capitalize;
+		background: var(--card-highlight);
+	}
+}
+
+// Columns
+
+.colName {
+	font-size: 20px;
+	margin-bottom: 15px;
+	text-transform: capitalize;
+}
+
+.colRx {
+	color: var(--rx);
+	text-align: right;
+}
+
+.colTx {
+	color: var(--tx);
+	text-align: right;
+}
+
+.colTotal {
+	font-size: 18px;
+	margin: 5px 0;
+	text-align: right;
+}
+
+.colRate {
+	font-size: 12px;
+	text-align: right;
+}
+
+// Top
+
+.cards:global(.is-top) .colName {
+	display: flex;
+	flex-direction: column;
+	text-align: center;
+	font-size: 13px;
+
+	strong {
+		font-size: 50px;
+		font-weight: 100;
+		line-height: 1;
+		color: var(--rx);
+		margin-bottom: 10px;
+	}
+}
+
+// Chart
+
+.colChart {
+	div {
+		position: absolute;
+		top: 0;
+		left: 0;
+		width: 100%;
+		display: flex;
+		gap: 1px;
+		justify-content: space-between;
+		background: var(--chart-background);
+	}
+
+	span {
+		display: block;
+		min-width: 1px;
+		height: 2px;
+	}
+
+	:global(.rx) {
+		background: var(--rx);
+	}
+	
+	:global(.tx) {
+		background: var(--tx);
+	}
+}
+
+/* Animation */
+
+.cards li {
+	animation-delay: calc(var(--order) * 50ms);
+	animation-name: card;
+	animation-duration: .2s;
+	animation-fill-mode: both;
+	animation-timing-function: linear;
+}
+
+@keyframes card {
+	0% {
+		transform: translateY(50px);
+		opacity: 0;
+	}
+
+	100% {
+		transform: translateY(0);
+		opacity: 1;
+	}
+}

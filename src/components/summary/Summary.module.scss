@@ -1,0 +1,43 @@
+.summary {
+	justify-content: end;
+}
+
+.charts {
+	display: flex;
+	gap: 15px;
+	flex-wrap: wrap;
+	justify-content: flex-end;
+
+	svg {
+		width: 63px;
+		height: 40px;
+	}
+
+	p {
+		margin: 0;
+		font-size: 10px;
+		color: var(--text);
+		text-align: right;
+		white-space: nowrap;
+		text-transform: capitalize;
+
+		&:global(.rx) {
+			color: var(--rx);
+		}
+		
+		&:global(.tx) {
+			color: var(--tx);
+		}
+	}
+}
+
+.group {
+	display: flex;
+	gap: 3px;
+
+	&:global(.is-day)>div,
+	&:global(.is-month)>div {
+		flex: 1 1 50%;
+		width: 50%;
+	}
+}

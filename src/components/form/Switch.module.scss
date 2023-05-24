@@ -1,0 +1,54 @@
+.switch {
+	z-index: -1;
+	position: absolute;
+	top: 0;
+	left: 0;
+	appearance: none;
+	outline: none;
+	opacity: 0;
+
+	+label {
+		cursor: pointer;
+		position: relative;
+		display: inline-flex;
+		align-items: center;
+		padding-left: 23px;
+		margin-right: 20px;
+
+		&::before,
+		&::after {
+			content: "";
+			position: absolute;
+			top: 50%;
+			left: 0;
+			display: flex;
+			transform: translateY(-50%);
+		}
+
+		&::before {
+			width: 16px;
+			height: 16px;
+			border: 1px solid var(--text);
+		}
+	}
+
+	// Focus
+
+	&:focus+label {
+		color: var(--rx);
+
+		&::before {
+			border-color: var(--rx);
+		}
+	}
+
+	// Checked
+
+	&:checked+label::after {
+		top: 50%;
+		left: 4px;
+		width: 8px;
+		height: 8px;
+		background: var(--rx);
+	}
+}

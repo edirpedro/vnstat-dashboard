@@ -13,16 +13,23 @@
 .wallpaper {
 	background: linear-gradient(to bottom, #39141b, #090d14);
 }
-.reports__cards li {
+
+[class*="Themes_themes__"] button:not(:hover).active {
+	color: var(--tx);
+}
+[class*="Menu_list__"] input:checked::after {
+	background: var(--tx);
+}
+[class*="Cards_cards__"] li {
 	border: 1px solid #f34d44;
 	border-bottom-right-radius: 15px;
 }
-.reports__cards .col-chart div {
+[class*="Cards_colChart__"] div {
 	width: calc(100% - 4px);
 	margin: 2px;
 }
-.chart-view__menu button:hover, 
-.chart-view__menu button.active {
+[class*="ChartView_menu__"] button:hover, 
+[class*="ChartView_menu__"] button.active {
 	color: var(--tx);
 }
 

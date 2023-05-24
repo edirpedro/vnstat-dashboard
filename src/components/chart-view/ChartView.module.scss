@@ -1,0 +1,30 @@
+.chartView {
+	position: relative;
+	display: flex;
+}
+
+// Menu
+
+.menu {
+	z-index: 1;
+	position: absolute;
+	bottom: 70%;
+	right: 0;
+	display: flex;
+	flex-direction: column;
+
+	button {
+		cursor: pointer;
+		display: block;
+		margin: 5px 0;
+		font-size: 12px;
+		text-align: right;
+		color: var(--text);
+
+		&:hover,
+		&:global(.active) {
+			color: var(--rx);
+		}
+	}
+}
+

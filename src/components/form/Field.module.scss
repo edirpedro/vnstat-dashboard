@@ -1,0 +1,14 @@
+.field {
+	display: flex;
+	margin: 10px 0;
+
+	>label:first-child {
+		display: flex;
+		align-items: center;
+		justify-content: flex-end;
+		width: 120px;
+		min-height: 30px;
+		margin-right: 15px;
+		text-align: right;
+	}
+}

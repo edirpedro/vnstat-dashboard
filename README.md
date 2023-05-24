@@ -12,7 +12,7 @@ Check out the [Demo](https://edirpedro.github.io/vnstat-dashboard/)!
 
 * Install [vnStat 2.0+](https://github.com/vergoh/vnstat).
 * Download a copy of this repository, in the folder `/build` you can find all the app files.
-* Follow one of the nexts to start a server for the API:
+* Follow one of the nexts steps to start a server for the API:
 
 ### PHP
 

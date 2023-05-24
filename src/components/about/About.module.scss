@@ -1,0 +1,23 @@
+.about {
+	dl {
+		display: flex;
+		flex-wrap: wrap;
+		margin: 0;
+	}
+
+	dt {
+		flex: 0 0 80px;
+		margin: 0;
+		padding-right: 10px;
+		text-align: right;
+	}
+
+	dd {
+		flex: 0 0 80%;
+		margin: 0;
+	}
+
+	p {
+		margin: 1em 0 0;
+	}
+}
