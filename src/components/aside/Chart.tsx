@@ -1,7 +1,8 @@
-import { formatTraffic } from "services/helpers";
+import useHelpers from "hooks/useHelpers";
 import styles from "./Aside.module.scss";
 
 const Chart = ({ rx, tx, title }: ChartProps) => {
+  const { formatTraffic } = useHelpers();
   const max = rx + tx;
   const calcRX = Math.round((rx / max) * 100);
   const calcTX = Math.round((tx / max) * 100);

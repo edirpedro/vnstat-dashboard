@@ -1,14 +1,15 @@
 import React from "react";
-import { formatTraffic } from "services/helpers";
 import { bb, bar, areaSpline, zoom, ChartOptions, ChartTypes, Chart as bbChart } from "billboard.js";
 import { DateTime } from "luxon";
 import useSettings from "hooks/useSettings";
 import { IvnStat } from "services/vnstat.type";
 import "billboard.js/dist/billboard.css";
 import "./billboard.scss";
+import useHelpers from "hooks/useHelpers";
 
 const Chart = ({ type, traffic }: Props) => {
   const { settings } = useSettings();
+  const { formatTraffic } = useHelpers();
   const ref = React.useRef<HTMLDivElement>(null);
   const instance = React.useRef<bbChart>();
 

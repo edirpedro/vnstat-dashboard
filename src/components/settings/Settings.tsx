@@ -1,5 +1,4 @@
 import React from "react";
-import vnStat from "services/vnstat";
 import useSettings, { ISettings } from "hooks/useSettings";
 import useLanguages from "hooks/useLanguages";
 import useReports from "hooks/useReports";
@@ -10,17 +9,19 @@ import FieldChart from "./FieldChart";
 import modalStyles from "hooks/useModal.module.scss";
 import styles from "./Settings.module.scss";
 import Button from "components/form/Button";
+import useHelpers from "hooks/useHelpers";
 
 const Settings = ({ close }: Props) => {
   const { __ } = useLanguages();
   const { settings, setSettings } = useSettings();
   const { changeReports } = useReports();
+  const { getUnitOptions } = useHelpers();
   const [form, setForm] = React.useState<ISettings.Options>(settings);
 
   let units: any[] = [];
-  Object.entries(vnStat.getUnitOptions()).forEach(([key, value]) => {
+  getUnitOptions().forEach((value) => {
     units.push({
-      value: key,
+      value: value.name,
       label: value.name + " (" + value.bytes[1] + ", " + value.bits[1] + ")"
     });
   });

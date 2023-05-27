@@ -1,37 +1,38 @@
 import React from "react";
-import { AppContext } from "AppContext";
-import { ISettings } from "./useSettings";
+import useSettings from "./useSettings";
 
-export const ThemesHook = (load: boolean = true, Settings: ISettings.Props): IThemes.Props => {
-  const { settings, setSettings } = Settings;
+const ThemesContext = React.createContext<Context>(undefined!);
+
+export const ThemesProvider = ({ children }: Provider) => {
   const [ready, setReady] = React.useState(false);
-  const [themes, setThemes] = React.useState<IThemes.Theme[]>([]);
-  const [theme, setTheme] = React.useState<IThemes.Theme>();
+  const [themes, setThemes] = React.useState<ITheme[]>([]);
+  const [theme, setTheme] = React.useState<ITheme>();
 
-  // Fetch essential data, used at AppContext
+  const { settings, setSettings } = useSettings();
+
+  // Load themes
 
   React.useEffect(() => {
-    if (!load) return;
     (async function load() {
       await fetch(process.env.PUBLIC_URL + "/api/themes.json")
         .then((response) => response.json())
         .then((json) => {
           if (json.message) throw new Error(json.message);
           setThemes(json);
-          setReady(true);
         })
         .catch(console.error);
     })();
     // eslint-disable-next-line
-  }, [load]);
+  }, []);
 
   // Setup theme
 
   React.useEffect(() => {
     if (!themes.length) return;
-    const pick = themes.at(0) as IThemes.Theme;
-		const chosen = themes.find((el) => el.file === settings.theme?.file) as IThemes.Theme;
+    const pick = themes.at(0) as ITheme;
+		const chosen = themes.find((el) => el.file === settings.theme?.file) as ITheme;
     changeTheme(chosen ?? pick);
+    setReady(true);
     // eslint-disable-next-line
   }, [themes]);
 
@@ -48,34 +49,37 @@ export const ThemesHook = (load: boolean = true, Settings: ISettings.Props): ITh
 
   // Change theme
 
-  function changeTheme(option: IThemes.Theme) {
+  function changeTheme(option: ITheme) {
     setSettings((prev) => ({ ...prev, theme: option }));
     setTheme(option);
   }
 
-  return { ready, theme, themes, changeTheme };
+  if (!ready) return null; // Wait before going to the next provider
+
+  return (
+    <ThemesContext.Provider value={{ theme, themes, changeTheme }}>
+      {children}
+    </ThemesContext.Provider>
+  );
+
 };
 
-const useThemes = () => {
-  const { Themes } = React.useContext(AppContext);
-  return { ...Themes };
-};
+const useThemes = () => React.useContext(ThemesContext);
 
 export default useThemes;
 
-export namespace IThemes {
-  
-  export interface Props {
-    ready: boolean
-    theme: Theme | undefined
-    themes: Theme[]
-    changeTheme: (options: Theme) => void
-  }
+export interface ITheme {
+  title: string
+  file: string
+}
 
-  export interface Theme {
-    title: string
-    file: string
-  }
-  
+type Context = {
+  theme: ITheme | undefined
+  themes: ITheme[]
+  changeTheme: (options: ITheme) => void
+}
+
+type Provider = {
+  children: React.ReactNode
 }
 

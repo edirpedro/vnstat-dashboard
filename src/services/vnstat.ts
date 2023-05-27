@@ -12,10 +12,10 @@ class vnStat {
    * @param {array} json - Traffic data retrieved from vnStat
    * @returns {instance}
    */
-  constructor(json: IvnStat.JSON) {
+  constructor(json: IvnStat.JSON, unit: IvnStat.Unit) {
     this._json = json;
+    this._unit = unit;
     this._interface = this._json.interfaces[0]; // shortcut
-    this._unit = vnStat.getUnit();
     this.prepare();
     return this;
   }
@@ -345,42 +345,6 @@ class vnStat {
     return ((entry.rx + entry.tx) * 8) / interval;
   }
 
-  /**
-   * Get current unit to format traffic data.
-   * @returns {object}
-   */
-  static getUnit(): IvnStat.Unit {
-    const options = vnStat.getUnitOptions();
-    const name = (window as any).vnStat_SETTINGS?.units ?? "IEC";
-    return options[name];
-  }
-
-  /**
-   * Get units options.
-   * @returns {object}
-   */
-  static getUnitOptions(): IvnStat.Units {
-    return {
-      IEC: {
-        name: "IEC",
-        base: 1024,
-        bytes: ["B", "KiB", "MiB", "GiB", "TiB", "PiB", "EiB"],
-        bits: ["bit/s", "Kibit/s", "Mibit/s", "Gibit/s", "Tibit/s", "Pibit/s", "Eibit/s"], // prettier-ignore
-      },
-      JEDEC: {
-        name: "JEDEC",
-        base: 1024,
-        bytes: ["B", "KB", "MB", "GB", "TB", "PB", "EB"],
-        bits: ["bit/s", "Kbit/s", "Mbit/s", "Gbit/s", "Tbit/s", "Pbit/s", "Ebit/s"], // prettier-ignore
-      },
-      SI: {
-        name: "SI",
-        base: 1000,
-        bytes: ["B", "kB", "MB", "GB", "TB", "PB", "EB"],
-        bits: ["bit/s", "kbit/s", "Mbit/s", "Gbit/s", "Tbit/s", "Pbit/s", "Ebit/s"], // prettier-ignore
-      },
-    };
-  }
 }
 
 export default vnStat;

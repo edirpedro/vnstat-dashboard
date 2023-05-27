@@ -1,9 +1,10 @@
 import React from "react";
-import { AppContext } from "AppContext";
-import { IThemes } from "./useThemes";
+import { ITheme } from "./useThemes";
 import useLocalStorage from "./useLocalStorage";
 
-export const SettingsHook = (load: boolean = true): ISettings.Props => {
+const SettingsContext = React.createContext<Context>(undefined!);
+
+export const SettingsProvider = ({ children }: Provider) => {
   const [ready, setReady] = React.useState(false);
   const [ifaces, setIfaces] = React.useState<ISettings.Iface[]>();
   const [settings, setSettings] = useLocalStorage<ISettings.Options>("settings", {
@@ -23,14 +24,9 @@ export const SettingsHook = (load: boolean = true): ISettings.Props => {
     chart_year_type: "area",
   });
 
-  // Globals
-
-  (window as any).vnStat_SETTINGS = settings;
-
-  // Fetch essential data, used at AppContext
+  // Fetch essential data
 
   React.useEffect(() => {
-    if (!load) return;
     (async function load() {
       await fetch(process.env.REACT_APP_API_URL + "?dbiflist")
         .then((response) => response.json())
@@ -57,15 +53,19 @@ export const SettingsHook = (load: boolean = true): ISettings.Props => {
         });
     })();
     // eslint-disable-next-line
-  }, [load]);
+  }, []);
 
-  return { ready, ifaces, settings, setSettings };
+  if (!ready) return null; // Wait before going to the next provider
+
+  return (
+    <SettingsContext.Provider value={{ ifaces, settings, setSettings }}>
+      {children}
+    </SettingsContext.Provider>
+  );
+
 };
 
-const useSettings = () => {
-  const { Settings } = React.useContext(AppContext);
-  return { ...Settings };
-};
+const useSettings = () => React.useContext(SettingsContext);
 
 export default useSettings;
 
@@ -74,7 +74,7 @@ export namespace ISettings {
   export interface Options {
     units: "IEC" | "JEDEC" | "SI"
     interface: string
-    theme?: IThemes.Theme
+    theme?: ITheme
     reports_initial: "fiveminute" | "hour" | "day" | "month" | "year"
     chart_initial: "fiveminute" | "hour" | "day" | "month" | "year"
     chart_fiveminute_log: boolean
@@ -94,11 +94,14 @@ export namespace ISettings {
     alias: string
   }
 
-  export interface Props {
-    ready: boolean
-    ifaces: Iface[] | undefined
-    settings: ISettings.Options
-    setSettings: React.Dispatch<React.SetStateAction<ISettings.Options>>
-  }
+}
 
+type Context = {
+  ifaces: ISettings.Iface[] | undefined
+  settings: ISettings.Options
+  setSettings: React.Dispatch<React.SetStateAction<ISettings.Options>>
+}
+
+type Provider = {
+  children: React.ReactNode
 }

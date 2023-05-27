@@ -1,43 +1,25 @@
 import React from "react";
-import { LanguagesHook, ILanguages } from "hooks/useLanguages";
-import { ReportsHook, IReports } from "hooks/useReports";
-import { SettingsHook, ISettings } from "hooks/useSettings";
-import { ThemesHook, IThemes } from "hooks/useThemes";
+import { LanguagesProvider } from "hooks/useLanguages";
+import { ReportsProvider } from "hooks/useReports";
+import { SettingsProvider } from "hooks/useSettings";
+import { ThemesProvider } from "hooks/useThemes";
 
-export const AppContext = React.createContext<AppContextProps>(undefined!);
-
-const AppProvider = ({ children }: AppProviderProps) => {
-  
-  // Loading essential data sequentially
-
-  const Settings = SettingsHook();
-  const Languages = LanguagesHook(Settings.ready);
-  const Themes = ThemesHook(Languages.ready, Settings);
-  const Reports = ReportsHook(Themes.ready, Settings);
-
+const AppProvider = ({ children }: Provider) => {
   return (
-    <AppContext.Provider
-      value={{
-        Settings,
-        Languages,
-        Themes,
-        Reports,
-      }}
-    >
-      {Reports.ready && children}
-    </AppContext.Provider>
+    <SettingsProvider>
+      <LanguagesProvider>
+        <ThemesProvider>
+          <ReportsProvider>
+            {children}
+          </ReportsProvider>
+        </ThemesProvider>
+      </LanguagesProvider>
+    </SettingsProvider>
   );
 };
 
 export default AppProvider;
 
-type AppContextProps = {
-  Languages: ILanguages.Props
-  Themes: IThemes.Props
-  Reports: IReports.Props
-  Settings: ISettings.Props
-}
-
-type AppProviderProps = {
+type Provider = {
   children: React.ReactNode
 }

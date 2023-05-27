@@ -1,15 +1,15 @@
 import React from "react";
 import { DateTime } from "luxon";
-import { AppContext } from "AppContext";
 
-export const LanguagesHook = (load: boolean = true): ILanguages.Props => {
+const LanguagesContext = React.createContext<Context>(undefined!);
+
+export const LanguagesProvider = ({ children }: Provider) => {
   const [ready, setReady] = React.useState(false);
   const [translations, setTranslations] = React.useState<Translations>({});
 
-  // Fetch essential data, used at AppContext
-  
+  // Load translations
+
   React.useEffect(() => {
-    if (!load) return;
     (async function load() {
       const local = DateTime.local();
       await fetch(process.env.PUBLIC_URL + "/languages/" + local.locale + ".json")
@@ -24,7 +24,7 @@ export const LanguagesHook = (load: boolean = true): ILanguages.Props => {
       setReady(true);
     })();
     // eslint-disable-next-line
-  }, [load]);
+  }, []);
 
   /**
    * Translate texts using the loaded JSON
@@ -34,7 +34,9 @@ export const LanguagesHook = (load: boolean = true): ILanguages.Props => {
    */
   function __(...args: string[]): string {
     const text: string = args[0];
-    let translation = translations[text] ?? text;
+    let translation = text;
+    if (translations && text in translations)
+      translation = translations[text];
     if (args.length > 1) {
       for (let i = 1; i < args.length; i++)
         translation = translation.replace("%s", args[i]);
@@ -42,24 +44,26 @@ export const LanguagesHook = (load: boolean = true): ILanguages.Props => {
     return translation;
   }
 
-  return { ready, translations, __ };
+  if (!ready) return null; // Wait before going to the next provider
+
+  return (
+    <LanguagesContext.Provider value={{ translations, __ }}>
+      {children}
+    </LanguagesContext.Provider>
+  );
 };
 
-const useLanguages = () => {
-  const { Languages } = React.useContext(AppContext);
-  return { ...Languages };
-};
+const useLanguages = () => React.useContext(LanguagesContext);
 
 export default useLanguages;
 
-export namespace ILanguages {
+type Context = {
+  translations: Translations
+  __: (...args: string[]) => string
+}
 
-  export interface Props {
-    ready: boolean
-    translations: Translations
-    __: (...args: string[]) => string
-  }
-
+type Provider = {
+  children: React.ReactNode
 }
 
 type Translations = {

@@ -74,15 +74,11 @@ export namespace IvnStat {
 
   export type TrafficKeys = keyof Omit<Traffics, 'total'>;
 
-  export type Units = {
-    [key: string]: {
-      name: string
-      base: number
-      bytes: string[]
-      bits: string[]
-    }
+  export type Unit = {
+    name: string
+    base: number
+    bytes: string[]
+    bits: string[]
   }
-
-  export type Unit = Units[string]
 
 }

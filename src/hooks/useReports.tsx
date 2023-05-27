@@ -1,23 +1,25 @@
 import React from "react";
-import { AppContext } from "AppContext";
-import { ISettings } from "./useSettings";
+import useSettings from "./useSettings";
 import vnStat from "services/vnstat";
+import useHelpers from "./useHelpers";
 
+const ReportsContext = React.createContext<Context>(undefined!);
 
-export const ReportsHook = (load: boolean = true, Settings: ISettings.Props): IReports.Props => {
-  const { settings, setSettings } = Settings;
+export const ReportsProvider = ({ children }: Provider) => {
   const [ready, setReady] = React.useState(false);
   const [reports, setReports] = React.useState<vnStat>(Object.create(null));
+  
+  const { settings, setSettings } = useSettings();
+  const { getUnit } = useHelpers();
 
-  // Fetch essential data, used at AppContext
+  // Load first reports
 
   React.useEffect(() => {
-    if (!load) return;
     (async function load() {
       await changeReports(settings.interface);
     })();
     // eslint-disable-next-line
-  }, [load]);
+  }, []);
 
   // Change reports
 
@@ -27,29 +29,32 @@ export const ReportsHook = (load: boolean = true, Settings: ISettings.Props): IR
       .then((response) => response.json())
       .then((json) => {
         if (json.message) throw new Error(json.message);
-        setReports(new vnStat(json));
+        setReports(new vnStat(json, getUnit()));
         setSettings((prev) => ({ ...prev, interface: iface }));
         setReady(true);
       })
       .catch(console.error);
   }
 
-  return { ready, reports, changeReports };
+  if (!ready) return null; // Wait before going to the next provider
+
+  return (
+    <ReportsContext.Provider value={{ reports, changeReports }}>
+      {children}
+    </ReportsContext.Provider>
+  );
+
 };
 
-const useReports = () => {
-  const { Reports } = React.useContext(AppContext);
-  return { ...Reports };
-};
+const useReports = () => React.useContext(ReportsContext);
 
 export default useReports;
 
-export namespace IReports {
+type Context = {
+  reports: vnStat
+  changeReports: (iface: string) => Promise<void>
+}
 
-  export interface Props {
-    ready: boolean
-    reports: vnStat
-    changeReports: (iface: string) => Promise<void>
-  }
-
+type Provider = {
+  children: React.ReactNode
 }
