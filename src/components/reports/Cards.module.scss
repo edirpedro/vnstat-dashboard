@@ -1,4 +1,3 @@
-
 .cards {
 	display: flex;
 	width: 100%;
@@ -14,7 +13,13 @@
 		list-style: none;
 		overflow: auto;
 		scrollbar-width: none;
-		-webkit-mask-image: linear-gradient(to bottom, transparent, #000 5%, #000 95%, transparent);
+		-webkit-mask-image: linear-gradient(
+			to bottom,
+			transparent,
+			#000 5%,
+			#000 95%,
+			transparent
+		);
 	}
 
 	li {
@@ -26,12 +31,12 @@
 		font-size: 14px;
 		line-height: 1.2;
 		background: var(--card);
-		transition: all .2s linear;
+		transition: all 0.2s linear;
 	}
 
 	li:hover {
 		background: var(--card-highlight);
-		transition: all .2s linear;
+		transition: all 0.2s linear;
 	}
 
 	.subtitle {
@@ -113,7 +118,7 @@
 	:global(.rx) {
 		background: var(--rx);
 	}
-	
+
 	:global(.tx) {
 		background: var(--tx);
 	}
@@ -124,7 +129,7 @@
 .cards li {
 	animation-delay: calc(var(--order) * 50ms);
 	animation-name: card;
-	animation-duration: .2s;
+	animation-duration: 0.2s;
 	animation-fill-mode: both;
 	animation-timing-function: linear;
 }

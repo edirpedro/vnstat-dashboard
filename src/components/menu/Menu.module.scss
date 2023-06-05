@@ -41,10 +41,10 @@
 		padding: 0 20px;
 		margin: 0 -20px;
 		background: transparent;
-		transition: all .2s linear;
+		transition: all 0.2s linear;
 
 		&:global(.divider)::before {
-			content: '';
+			content: "";
 			display: block;
 			width: 100%;
 			height: 1px;
@@ -55,7 +55,7 @@
 		&:not(:global(.divider)):hover {
 			color: var(--rx-text);
 			background: var(--rx);
-			transition: all .2s linear;
+			transition: all 0.2s linear;
 		}
 	}
 
@@ -68,7 +68,7 @@
 		text-decoration: none;
 		color: var(--text);
 		background: transparent;
-		transition: all .2s linear;
+		transition: all 0.2s linear;
 	}
 
 	input {
@@ -85,7 +85,7 @@
 		background: transparent;
 
 		&::before {
-			content: '';
+			content: "";
 			position: absolute;
 			top: 50%;
 			left: 0;
@@ -93,11 +93,11 @@
 			height: 2px;
 			transform: translateY(-50%);
 			background: var(--text);
-			transition: all .2s linear;
+			transition: all 0.2s linear;
 		}
 
 		&::after {
-			content: '';
+			content: "";
 			position: absolute;
 			top: 50%;
 			left: 0;
@@ -106,7 +106,7 @@
 			background: var(--text);
 			border-radius: 10px;
 			transform: translateY(-50%);
-			transition: all .2s linear;
+			transition: all 0.2s linear;
 		}
 
 		&:checked::after {
@@ -114,28 +114,25 @@
 			width: 10px;
 			height: 10px;
 			background: var(--rx);
-			transition: all .2s linear;
+			transition: all 0.2s linear;
 		}
-
 	}
 
 	li:hover {
 		button {
 			color: var(--rx-text);
-			transition: all .2s linear;
+			transition: all 0.2s linear;
 		}
 
 		input {
-
 			&::before,
 			&::after,
 			&:checked::after {
 				background: var(--rx-text);
-				transition: all .2s linear;
+				transition: all 0.2s linear;
 			}
 		}
 	}
-
 }
 
 .box:hover .list {

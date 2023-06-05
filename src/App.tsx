@@ -1,4 +1,4 @@
-import AppProvider from "./AppContext";
+import AppProviders from "./AppContext";
 import Dashboard from "./components/dashboard/Dashboard";
 import Logo from "./components/logo/Logo";
 import Menu from "./components/menu/Menu";
@@ -13,7 +13,7 @@ import { ErrorBoundary } from "react-error-boundary";
 function App() {
   return (
     <ErrorBoundary fallback={<div>Something went wrong</div>}>
-      <AppProvider>
+      <AppProviders>
         <Themes />
         <Dashboard>
           <Logo column="13/span 4" row="4/span 3" />
@@ -25,7 +25,7 @@ function App() {
             <ChartView column="1/span 16" row="8/span 2" />
           </ReportsProvider>
         </Dashboard>
-      </AppProvider>
+      </AppProviders>
     </ErrorBoundary>
   );
 }

@@ -2,7 +2,13 @@ import React from "react";
 import useLanguages from "hooks/useLanguages";
 import styles from "./Select.module.scss";
 
-const Select = function<T>({ name, options, form, setForm, ...props }: Props<T>) {
+const Select = function <T>({
+  name,
+  options,
+  form,
+  setForm,
+  ...props
+}: Props<T>) {
   const { __ } = useLanguages();
 
   return (
@@ -38,12 +44,12 @@ const Select = function<T>({ name, options, form, setForm, ...props }: Props<T>)
 export default Select;
 
 type Props<T> = {
-  name: string
+  name: string;
   options: {
-    value: string
-    label: string
-  }[]
-  form: T
-  setForm: React.Dispatch<React.SetStateAction<T>>
-  [k: string]: any
-}
+    value: string;
+    label: string;
+  }[];
+  form: T;
+  setForm: React.Dispatch<React.SetStateAction<T>>;
+  [k: string]: any;
+};

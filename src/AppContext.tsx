@@ -4,22 +4,20 @@ import { ReportsProvider } from "hooks/useReports";
 import { SettingsProvider } from "hooks/useSettings";
 import { ThemesProvider } from "hooks/useThemes";
 
-const AppProvider = ({ children }: Provider) => {
+const AppProviders = ({ children }: Provider) => {
   return (
     <SettingsProvider>
       <LanguagesProvider>
         <ThemesProvider>
-          <ReportsProvider>
-            {children}
-          </ReportsProvider>
+          <ReportsProvider>{children}</ReportsProvider>
         </ThemesProvider>
       </LanguagesProvider>
     </SettingsProvider>
   );
 };
 
-export default AppProvider;
+export default AppProviders;
 
 type Provider = {
-  children: React.ReactNode
-}
+  children: React.ReactNode;
+};

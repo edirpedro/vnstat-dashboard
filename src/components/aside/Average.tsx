@@ -49,9 +49,13 @@ const Average = () => {
     });
   }
 
-  return <>
-    {average.map((item) => <Chart key={Math.random()} {...item} />)}
-  </>;
+  return (
+    <>
+      {average.map((item) => (
+        <Chart key={Math.random()} {...item} />
+      ))}
+    </>
+  );
 };
 
 export default Average;

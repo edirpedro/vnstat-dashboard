@@ -8,7 +8,6 @@ import Chart from "./Chart";
 import { IvnStat } from "services/vnstat.type";
 import styltes from "./ChartView.module.scss";
 
-
 const ChartView = ({ column, row }: IWidget.ColRow) => {
   const { __ } = useLanguages();
   const { reports } = useReports();
@@ -27,7 +26,7 @@ const ChartView = ({ column, row }: IWidget.ColRow) => {
     { type: "month", title: __("Months") },
     { type: "year", title: __("Years") },
   ];
-  
+
   menu = menu.filter((item) => {
     const key = item.type;
     return traffic[key].length > 1;
@@ -79,14 +78,14 @@ const ChartViewRender = React.memo(
 export default ChartView;
 
 interface RenderProps extends IWidget.ColRow {
-  menu: Menu[]
-  type: IvnStat.TrafficKeys
-  traffic: IvnStat.Traffics
-  iface: string
-  setTab: React.Dispatch<React.SetStateAction<ReportsContextTab>>
+  menu: Menu[];
+  type: IvnStat.TrafficKeys;
+  traffic: IvnStat.Traffics;
+  iface: string;
+  setTab: React.Dispatch<React.SetStateAction<ReportsContextTab>>;
 }
 
 interface Menu {
-  type: IvnStat.TrafficKeys
-  title: string
+  type: IvnStat.TrafficKeys;
+  title: string;
 }

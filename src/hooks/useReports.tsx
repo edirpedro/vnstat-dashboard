@@ -8,7 +8,7 @@ const ReportsContext = React.createContext<Context>(undefined!);
 export const ReportsProvider = ({ children }: Provider) => {
   const [ready, setReady] = React.useState(false);
   const [reports, setReports] = React.useState<vnStat>(Object.create(null));
-  
+
   const { settings, setSettings } = useSettings();
   const { getUnit } = useHelpers();
 
@@ -43,7 +43,6 @@ export const ReportsProvider = ({ children }: Provider) => {
       {children}
     </ReportsContext.Provider>
   );
-
 };
 
 const useReports = () => React.useContext(ReportsContext);
@@ -51,10 +50,10 @@ const useReports = () => React.useContext(ReportsContext);
 export default useReports;
 
 type Context = {
-  reports: vnStat
-  changeReports: (iface: string) => Promise<void>
-}
+  reports: vnStat;
+  changeReports: (iface: string) => Promise<void>;
+};
 
 type Provider = {
-  children: React.ReactNode
-}
+  children: React.ReactNode;
+};

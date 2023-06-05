@@ -13,5 +13,5 @@ const Dashboard = ({ children }: Props) => {
 export default Dashboard;
 
 interface Props {
-  children: React.ReactNode
+  children: React.ReactNode;
 }

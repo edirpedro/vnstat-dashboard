@@ -17,12 +17,12 @@ const Chart = ({ name, item, higher }: Props) => {
   switch (name) {
     case "dayA":
     case "dayB":
-      if ('date' in item)
+      if ("date" in item)
         title = DateTime.fromObject({ ...item.date }).toRelativeCalendar();
       break;
     case "monthA":
     case "monthB":
-      if ('date' in item)
+      if ("date" in item)
         title = DateTime.fromObject({ ...item.date }).monthLong;
       break;
     case "total":
@@ -111,7 +111,7 @@ const Chart = ({ name, item, higher }: Props) => {
 export default Chart;
 
 interface Props {
-  name: string
-  item: IvnStat.Traffic | IvnStat.Total
-  higher: number
+  name: string;
+  item: IvnStat.Traffic | IvnStat.Total;
+  higher: number;
 }

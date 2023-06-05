@@ -5,17 +5,17 @@ import styles from "./useModal.module.scss";
 const useModal = (
   children: React.FunctionComponent<IModal.Props>,
   options: IModal.Options = {},
-  props: IModal.Props = { 
-    close: () => {} 
+  props: IModal.Props = {
+    close: () => {},
   }
 ): IModal.Return => {
   const [Modal, setModal] = React.useState<React.ReactNode>(null);
   const ref = React.useRef<HTMLDivElement>(null);
 
   options = {
-    name: 'name',
-    ...options
-  }
+    name: "name",
+    ...options,
+  };
 
   props.close = closeModal;
 
@@ -40,7 +40,7 @@ const useModal = (
   }
 
   function closeModal(): void {
-    ref.current?.classList.add('close');
+    ref.current?.classList.add("close");
     setTimeout(() => {
       setModal(null);
     }, 1000);
@@ -57,19 +57,14 @@ const useModal = (
 export default useModal;
 
 export namespace IModal {
-
   export interface Options {
-    name?: string
+    name?: string;
   }
 
   export interface Props {
-    close: () => void
-    [key: string]: any
+    close: () => void;
+    [key: string]: any;
   }
 
-  export type Return = [
-    React.ReactNode,
-    () => void
-  ]
-
+  export type Return = [React.ReactNode, () => void];
 }

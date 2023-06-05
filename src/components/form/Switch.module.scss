@@ -7,7 +7,7 @@
 	outline: none;
 	opacity: 0;
 
-	+label {
+	+ label {
 		cursor: pointer;
 		position: relative;
 		display: inline-flex;
@@ -34,7 +34,7 @@
 
 	// Focus
 
-	&:focus+label {
+	&:focus + label {
 		color: var(--rx);
 
 		&::before {
@@ -44,7 +44,7 @@
 
 	// Checked
 
-	&:checked+label::after {
+	&:checked + label::after {
 		top: 50%;
 		left: 4px;
 		width: 8px;

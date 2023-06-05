@@ -1,8 +1,14 @@
 import React from "react";
 import useLanguages from "hooks/useLanguages";
-import styles from "./Radio.module.scss"
+import styles from "./Radio.module.scss";
 
-const Radio = function<T>({ name, options, form, setForm, ...props }: Props<T>) {
+const Radio = function <T>({
+  name,
+  options,
+  form,
+  setForm,
+  ...props
+}: Props<T>) {
   const { __ } = useLanguages();
 
   function onChange({ target }: React.ChangeEvent<HTMLInputElement>) {
@@ -33,12 +39,12 @@ const Radio = function<T>({ name, options, form, setForm, ...props }: Props<T>) 
 export default Radio;
 
 type Props<T> = {
-  name: string
+  name: string;
   options: {
-    value: string
-    label: string
-  }[]
-  form: T
-  setForm: React.Dispatch<React.SetStateAction<T>>
-  [k: string]: any
-}
+    value: string;
+    label: string;
+  }[];
+  form: T;
+  setForm: React.Dispatch<React.SetStateAction<T>>;
+  [k: string]: any;
+};

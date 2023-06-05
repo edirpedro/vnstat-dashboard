@@ -16,7 +16,7 @@ const Field = ({ children, name, label }: Props) => {
 export default Field;
 
 type Props = {
-  children: React.ReactNode
-  name: string
-  label: string
-}
+  children: React.ReactNode;
+  name: string;
+  label: string;
+};

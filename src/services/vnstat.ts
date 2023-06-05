@@ -75,7 +75,7 @@ class vnStat {
   getTraffic(type: IvnStat.TrafficKeys, gaps: boolean = false): IvnStat.Traffic[] {
     let traffic = this._interface.traffic;
     let data: IvnStat.Traffic[] = [];
-    data = structuredClone(traffic[type]) as IvnStat.Traffic[];
+    data = this.structuredClone(traffic[type]) as IvnStat.Traffic[];
     if (gaps === false) return this.noGaps(data);
     return data;
   }
@@ -86,7 +86,7 @@ class vnStat {
    * @returns {IvnStat.Traffics}
    */
   getAllTraffic(gaps: boolean = false): IvnStat.Traffics {
-    let traffic = structuredClone(this._interface.traffic) as IvnStat.Traffics;
+    let traffic = this.structuredClone(this._interface.traffic) as IvnStat.Traffics;
     let keys = Object.keys(traffic) as Array<keyof typeof traffic>;
     keys.forEach((type) => {
       if (type === "total") return;
@@ -343,6 +343,17 @@ class vnStat {
     if (interval === 0) return 0;
 
     return ((entry.rx + entry.tx) * 8) / interval;
+  }
+
+  /**
+   * Support for structuredClone() function if not available at Node 16-
+   * @param {object} obj - Simple objects
+   * @returns {object}
+   */
+  private structuredClone(obj: object): object {
+    if (typeof structuredClone === 'function')
+      return structuredClone(obj);
+    return JSON.parse(JSON.stringify(obj));
   }
 
 }

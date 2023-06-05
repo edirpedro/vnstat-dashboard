@@ -1,5 +1,13 @@
 import React from "react";
-import { bb, bar, areaSpline, zoom, ChartOptions, ChartTypes, Chart as bbChart } from "billboard.js";
+import {
+  bb,
+  bar,
+  areaSpline,
+  zoom,
+  ChartOptions,
+  ChartTypes,
+  Chart as bbChart,
+} from "billboard.js";
 import { DateTime } from "luxon";
 import useSettings from "hooks/useSettings";
 import { IvnStat } from "services/vnstat.type";
@@ -244,21 +252,14 @@ const Chart = ({ type, traffic }: Props) => {
 export default Chart;
 
 type Props = {
-  type: IvnStat.TrafficKeys
-  traffic: IvnStat.Traffic[]
-}
+  type: IvnStat.TrafficKeys;
+  traffic: IvnStat.Traffic[];
+};
 
 type GridLines = {
-  value: Date
-}
+  value: Date;
+};
 
-type Columns = [
-  [string | Date], 
-  [string | number], 
-  [string | number]
-]
+type Columns = [[string | Date], [string | number], [string | number]];
 
-type ZoomRange = [
-  string | number | Date, 
-  string | number | Date
-]
+type ZoomRange = [string | number | Date, string | number | Date];

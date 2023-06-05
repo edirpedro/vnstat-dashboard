@@ -10,7 +10,7 @@ const ReportsProvider = ({ children }: ProviderProps) => {
   const current = reports.getInterface();
   const iface = React.useRef<string>(current);
 
-	// Reset tabs after change reports
+  // Reset tabs after change reports
   if (current !== iface.current) {
     iface.current = current;
     setTab(undefined);
@@ -28,10 +28,10 @@ export default ReportsProvider;
 export type ReportsContextTab = IvnStat.TrafficKeys | undefined;
 
 type ContextProps = {
-  tab: ReportsContextTab
-  setTab: React.Dispatch<React.SetStateAction<ReportsContextTab>>
-}
+  tab: ReportsContextTab;
+  setTab: React.Dispatch<React.SetStateAction<ReportsContextTab>>;
+};
 
 type ProviderProps = {
-  children: React.ReactNode
-}
+  children: React.ReactNode;
+};

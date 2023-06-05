@@ -1,10 +1,8 @@
 import { DateTime } from "luxon";
 import { IvnStat } from "services/vnstat.type";
-import styles from  "./Cards.module.scss";
-
+import styles from "./Cards.module.scss";
 
 const Card = ({ type, item, index, max }: Props) => {
-
   function theTitle(): string {
     const date = DateTime.fromObject({ ...item.date, ...item.time });
     switch (type) {
@@ -55,8 +53,8 @@ const Card = ({ type, item, index, max }: Props) => {
 export default Card;
 
 type Props = {
-  type: IvnStat.TrafficKeys
-  item: IvnStat.Traffic
-  index: number
-  max: number
-}
+  type: IvnStat.TrafficKeys;
+  item: IvnStat.Traffic;
+  index: number;
+  max: number;
+};

@@ -4,7 +4,7 @@ import useThemes from "hooks/useThemes";
 import styles from "./Themes.module.scss";
 
 const Themes = () => {
-	const { __ } = useLanguages();
+  const { __ } = useLanguages();
   const { theme, themes, changeTheme } = useThemes();
 
   return (

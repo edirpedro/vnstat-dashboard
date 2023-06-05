@@ -13,19 +13,29 @@ const Chart = ({ rx, tx, title }: ChartProps) => {
       <div className={styles.chart}>
         <div className="rx">
           <span
-            style={{ height: calcRX + "%", "--height": calcRX + "%" } as React.CSSProperties}
+            style={
+              {
+                height: calcRX + "%",
+                "--height": calcRX + "%",
+              } as React.CSSProperties
+            }
           ></span>
         </div>
         <div className="tx">
           <span
-            style={{ height: calcTX + "%", "--height": calcTX + "%" } as React.CSSProperties}
+            style={
+              {
+                height: calcTX + "%",
+                "--height": calcTX + "%",
+              } as React.CSSProperties
+            }
           ></span>
         </div>
       </div>
       <ul className={styles.list}>
         <li className="rx">{formatTraffic(rx)}</li>
         <li className="tx">{formatTraffic(tx)}</li>
-        <li>{formatTraffic((rx + tx))}</li>
+        <li>{formatTraffic(rx + tx)}</li>
       </ul>
     </div>
   );
@@ -34,8 +44,8 @@ const Chart = ({ rx, tx, title }: ChartProps) => {
 export default Chart;
 
 export interface ChartProps {
-  type: string
-  title: string
-  rx: number
-  tx: number
+  type: string;
+  title: string;
+  rx: number;
+  tx: number;
 }

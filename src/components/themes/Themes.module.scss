@@ -1,4 +1,4 @@
-.themes{
+.themes {
 	z-index: 100;
 	position: absolute;
 	top: 0;
@@ -7,19 +7,19 @@
 	height: 50px;
 
 	&::before {
-		content: '';
+		content: "";
 		position: absolute;
 		top: 0;
 		right: 0;
 		border-color: transparent var(--rx);
 		border-style: solid;
 		border-width: 0 15px 15px 0;
-		transition: all .2s linear;
+		transition: all 0.2s linear;
 	}
 
 	&:hover::before {
 		border-width: 0 30px 30px 0;
-		transition: all .2s linear;
+		transition: all 0.2s linear;
 	}
 
 	h2 {
@@ -37,7 +37,7 @@
 		white-space: nowrap;
 		text-align: left;
 		background: transparent;
-		transition: all .2s linear;
+		transition: all 0.2s linear;
 
 		&:global(.active) {
 			color: var(--rx);
@@ -46,7 +46,7 @@
 		&:hover {
 			background: var(--rx);
 			color: var(--rx-text);
-			transition: all .2s linear;
+			transition: all 0.2s linear;
 		}
 	}
 

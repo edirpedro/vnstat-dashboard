@@ -24,7 +24,7 @@
 		&:global(.rx) {
 			color: var(--rx);
 		}
-		
+
 		&:global(.tx) {
 			color: var(--tx);
 		}
@@ -35,8 +35,8 @@
 	display: flex;
 	gap: 3px;
 
-	&:global(.is-day)>div,
-	&:global(.is-month)>div {
+	&:global(.is-day) > div,
+	&:global(.is-month) > div {
 		flex: 1 1 50%;
 		width: 50%;
 	}

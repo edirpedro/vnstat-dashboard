@@ -6,7 +6,7 @@ import { ReportsContext } from "./ReportsContext";
 import Widget, { IWidget } from "../widget/Widget";
 import Cards from "./Cards";
 import { IvnStat } from "services/vnstat.type";
-import styles from  "./Reports.module.scss";
+import styles from "./Reports.module.scss";
 
 const Reports = ({ column, row }: IWidget.ColRow) => {
   const { __ } = useLanguages();

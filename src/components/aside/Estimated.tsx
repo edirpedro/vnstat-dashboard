@@ -66,9 +66,13 @@ const Estimated = () => {
     { type: "year", title: __("Year"), ...getEstimates("year") },
   ];
 
-  return <>
-    {estimated.map((item) => <Chart key={Math.random()} {...item} />)}
-  </>;
+  return (
+    <>
+      {estimated.map((item) => (
+        <Chart key={Math.random()} {...item} />
+      ))}
+    </>
+  );
 };
 
 export default Estimated;

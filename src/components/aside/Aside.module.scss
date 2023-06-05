@@ -13,10 +13,10 @@
 		white-space: nowrap;
 		background: var(--rx);
 		color: var(--rx-text);
-		transition: all .2s linear;
+		transition: all 0.2s linear;
 
 		&::after {
-			content: '';
+			content: "";
 			position: absolute;
 			bottom: 9px;
 			right: 7px;
@@ -30,7 +30,7 @@
 		&:hover {
 			color: var(--tx-text);
 			background: var(--tx);
-			transition: all .2s linear;
+			transition: all 0.2s linear;
 		}
 
 		&:hover::after {
@@ -72,7 +72,7 @@
 		&:global(.rx) {
 			color: var(--rx);
 		}
-		
+
 		&:global(.tx) {
 			color: var(--tx);
 		}
@@ -100,7 +100,7 @@
 	:global(.rx) span {
 		background: var(--rx);
 	}
-	
+
 	:global(.tx) span {
 		background: var(--tx);
 	}

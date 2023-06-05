@@ -30,7 +30,9 @@ export const ThemesProvider = ({ children }: Provider) => {
   React.useEffect(() => {
     if (!themes.length) return;
     const pick = themes.at(0) as ITheme;
-		const chosen = themes.find((el) => el.file === settings.theme?.file) as ITheme;
+    const chosen = themes.find(
+      (el) => el.file === settings.theme?.file
+    ) as ITheme;
     changeTheme(chosen ?? pick);
     setReady(true);
     // eslint-disable-next-line
@@ -61,7 +63,6 @@ export const ThemesProvider = ({ children }: Provider) => {
       {children}
     </ThemesContext.Provider>
   );
-
 };
 
 const useThemes = () => React.useContext(ThemesContext);
@@ -69,17 +70,16 @@ const useThemes = () => React.useContext(ThemesContext);
 export default useThemes;
 
 export interface ITheme {
-  title: string
-  file: string
+  title: string;
+  file: string;
 }
 
 type Context = {
-  theme: ITheme | undefined
-  themes: ITheme[]
-  changeTheme: (options: ITheme) => void
-}
+  theme: ITheme | undefined;
+  themes: ITheme[];
+  changeTheme: (options: ITheme) => void;
+};
 
 type Provider = {
-  children: React.ReactNode
-}
-
+  children: React.ReactNode;
+};

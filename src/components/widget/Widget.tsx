@@ -18,14 +18,12 @@ const Widget = ({ column, row, className, children }: IWidget.Props) => {
 export default Widget;
 
 export namespace IWidget {
-
   export interface Props {
-    column: string
-    row: string
-    className: string
-    children: React.ReactNode
+    column: string;
+    row: string;
+    className: string;
+    children: React.ReactNode;
   }
 
-  export type ColRow = Pick<IWidget.Props, "column" | "row">
-
+  export type ColRow = Pick<IWidget.Props, "column" | "row">;
 }

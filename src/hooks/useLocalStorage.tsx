@@ -4,7 +4,7 @@ function useLocalStorage<T>(key: string, defaultValue: T) {
   const [value, setValue] = React.useState<T>((): T => {
     let current;
     try {
-      current = JSON.parse(localStorage.getItem(key) || '');
+      current = JSON.parse(localStorage.getItem(key) || "");
       current = { ...defaultValue, ...current };
     } catch (e) {
       current = defaultValue;
@@ -19,6 +19,6 @@ function useLocalStorage<T>(key: string, defaultValue: T) {
   }, [value, key]);
 
   return [value, setValue] as const; // avoid Typescript infer an union type
-};
+}
 
 export default useLocalStorage;

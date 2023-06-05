@@ -22,7 +22,7 @@ const Settings = ({ close }: Props) => {
   getUnitOptions().forEach((value) => {
     units.push({
       value: value.name,
-      label: value.name + " (" + value.bytes[1] + ", " + value.bits[1] + ")"
+      label: value.name + " (" + value.bytes[1] + ", " + value.bits[1] + ")",
     });
   });
 
@@ -57,7 +57,11 @@ const Settings = ({ close }: Props) => {
         />
       </Field>
       <Field name="chart_initial" label="Initial chart">
-        <Select<typeof form> name="chart_initial" options={initials} {...field} />
+        <Select<typeof form>
+          name="chart_initial"
+          options={initials}
+          {...field}
+        />
       </Field>
       <FieldChart label="Minutes" type="fiveminute" {...field} />
       <FieldChart label="Hours" type="hour" {...field} />
@@ -77,5 +81,5 @@ const Settings = ({ close }: Props) => {
 export default Settings;
 
 type Props = {
-  close: IModal.Props['close']
-}
+  close: IModal.Props["close"];
+};

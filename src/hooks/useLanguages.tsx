@@ -12,13 +12,17 @@ export const LanguagesProvider = ({ children }: Provider) => {
   React.useEffect(() => {
     (async function load() {
       const local = DateTime.local();
-      await fetch(process.env.PUBLIC_URL + "/languages/" + local.locale + ".json")
+      await fetch(
+        process.env.PUBLIC_URL + "/languages/" + local.locale + ".json"
+      )
         .then((response) => response.json())
         .then((json) => {
           setTranslations(json);
         })
         .catch((e) => {
-          console.log("Language file for '" + local.locale + "' was not found.");
+          console.log(
+            "Language file for '" + local.locale + "' was not found."
+          );
           setTranslations({});
         });
       setReady(true);
@@ -35,8 +39,7 @@ export const LanguagesProvider = ({ children }: Provider) => {
   function __(...args: string[]): string {
     const text: string = args[0];
     let translation = text;
-    if (translations && text in translations)
-      translation = translations[text];
+    if (translations && text in translations) translation = translations[text];
     if (args.length > 1) {
       for (let i = 1; i < args.length; i++)
         translation = translation.replace("%s", args[i]);
@@ -58,14 +61,14 @@ const useLanguages = () => React.useContext(LanguagesContext);
 export default useLanguages;
 
 type Context = {
-  translations: Translations
-  __: (...args: string[]) => string
-}
+  translations: Translations;
+  __: (...args: string[]) => string;
+};
 
 type Provider = {
-  children: React.ReactNode
-}
+  children: React.ReactNode;
+};
 
 type Translations = {
-  [key: string]: string
-}
+  [key: string]: string;
+};

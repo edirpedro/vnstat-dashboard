@@ -1,10 +1,9 @@
 import useReports from "hooks/useReports";
 import { ISettings } from "hooks/useSettings";
 
-
 const MenuInterface = ({ iface, item }: Props) => {
   const { changeReports } = useReports();
-  
+
   function handleCheckbox(e: React.ChangeEvent<HTMLInputElement>): void {
     if (e.target.checked) iface.push(e.target.value);
     else iface.splice(iface.indexOf(e.target.value), 1);
@@ -32,6 +31,6 @@ const MenuInterface = ({ iface, item }: Props) => {
 export default MenuInterface;
 
 type Props = {
-  iface: string[]
-  item: ISettings.Iface
-}
+  iface: string[];
+  item: ISettings.Iface;
+};

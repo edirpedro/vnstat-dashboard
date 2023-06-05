@@ -10,8 +10,8 @@ const FieldChart = ({ label, type, form, setForm }: Props) => {
 
   const options = [
     { value: "bar", label: "Bar" },
-    { value: "area", label: "Area" }
-  ]
+    { value: "area", label: "Area" },
+  ];
 
   return (
     <Field name={`chart_${type}`} label={label}>
@@ -28,8 +28,8 @@ const FieldChart = ({ label, type, form, setForm }: Props) => {
 export default FieldChart;
 
 type Props = {
-  label: string
-  type: IvnStat.TrafficKeys
-  form: ISettings.Options
-  setForm: React.Dispatch<React.SetStateAction<ISettings.Options>>
-}
+  label: string;
+  type: IvnStat.TrafficKeys;
+  form: ISettings.Options;
+  setForm: React.Dispatch<React.SetStateAction<ISettings.Options>>;
+};

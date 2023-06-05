@@ -8,18 +8,18 @@ import Widget, { IWidget } from "../widget/Widget";
 import MenuInterface from "./MenuInterface";
 import styles from "./Menu.module.scss";
 
-
 const Menu = ({ column, row }: IWidget.ColRow) => {
   const { __ } = useLanguages();
   const { reports } = useReports();
   const { ifaces } = useSettings();
 
   const [ModalAbout, openAbout] = useModal(About, { name: "about" });
-  const [ModalSettings, openSettings] = useModal(Settings, { name: "settings" });
+  const [ModalSettings, openSettings] = useModal(Settings, {
+    name: "settings",
+  });
 
   let iface: string[] = [reports.getInterface()];
-  if (iface[0].indexOf("+"))
-    iface = iface[0].split("+");
+  if (iface[0].indexOf("+")) iface = iface[0].split("+");
 
   if (!ifaces) return null;
 
@@ -37,11 +37,7 @@ const Menu = ({ column, row }: IWidget.ColRow) => {
           <ul className={styles.list}>
             {ifaces.length > 1 &&
               ifaces.map((item, index) => (
-                <MenuInterface
-                  key={index}
-                  iface={iface}
-                  item={item}
-                />
+                <MenuInterface key={index} iface={iface} item={item} />
               ))}
             <li className="divider"></li>
             <li>

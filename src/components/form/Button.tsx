@@ -12,7 +12,7 @@ const Button = ({ children, type, ...props }: Props) => {
 export default Button;
 
 type Props = {
-  children: string | React.ReactNode
-  type: "submit" | "button" | "reset"
-  [k: string]: any
-}
+  children: string | React.ReactNode;
+  type: "submit" | "button" | "reset";
+  [k: string]: any;
+};

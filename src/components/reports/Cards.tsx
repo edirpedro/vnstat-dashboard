@@ -2,7 +2,7 @@ import React from "react";
 import { DateTime } from "luxon";
 import Card from "./Card";
 import { IvnStat } from "services/vnstat.type";
-import styles from  "./Cards.module.scss";
+import styles from "./Cards.module.scss";
 
 const Cards = ({ type, traffic }: Props) => {
   const ref = React.useRef<HTMLUListElement>(null);
@@ -79,6 +79,6 @@ const Cards = ({ type, traffic }: Props) => {
 export default Cards;
 
 type Props = {
-  type: IvnStat.TrafficKeys,
-  traffic: IvnStat.Traffic[]
-}
+  type: IvnStat.TrafficKeys;
+  traffic: IvnStat.Traffic[];
+};

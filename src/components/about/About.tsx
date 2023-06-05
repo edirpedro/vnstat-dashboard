@@ -3,7 +3,7 @@ import useLanguages from "hooks/useLanguages";
 import styles from "./About.module.scss";
 
 const About = () => {
-	const { __ } = useLanguages();
+  const { __ } = useLanguages();
   const [update, setUpdate] = React.useState();
 
   // Check for updates
