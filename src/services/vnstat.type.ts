@@ -42,6 +42,7 @@ export namespace IvnStat {
     id?: number
     date: Date
     time?: Time
+    timestamp: number
     rx: number
     rx_formatted?: string
     tx: number

@@ -9,6 +9,7 @@ node_modules
 # Private
 
 /private
+/coverage
 /build/config.js
 /public/config.js
 /tasks/local.sh

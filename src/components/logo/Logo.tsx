@@ -3,8 +3,8 @@ import Widget, { IWidget } from "../widget/Widget";
 import styles from "./Logo.module.scss";
 
 const Logo = ({ column, row }: IWidget.ColRow) => {
-  const { reports } = useReports();
-  const version = reports.getVersion();
+  const { json } = useReports();
+  const version = json.getVersion();
 
   return (
     <Widget column={column} row={row} className={styles.logo}>

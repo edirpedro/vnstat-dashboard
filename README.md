@@ -10,17 +10,46 @@ Check out the [Demo](https://edirpedro.github.io/vnstat-dashboard/)!
 
 ## How to install?
 
-* Install [vnStat 2.0+](https://github.com/vergoh/vnstat).
-* Download a copy of this repository, in the folder `/build` you can find all the app files.
-* Follow one of the nexts steps to start a server for the API:
+* Install [vnStat 2.10+](https://github.com/vergoh/vnstat).
+* Install a web server to host your app, read some options below.
+* Download a copy of this repository.
+* Copy the content of folder `/build` to your localhost `/public` folder.
+* Setup a **Crontab** service to output the JSON data from vnStat, read more below.
+* Start your web server to view your reports.
+
+## Crontab
+
+Write a command at Crontab service to output the vnStat data every 5 minutes inside the `/path/to/localhost/public/api/vnstat.json` file.
+
+### Mac OS and Linux
+
+* Type `crontab -e`
+* Write `*/5 * * * * /path/to/bin/vnstat --json > /path/to/localhost/public/api/vnstat.json` changing the paths according to your vnstat and localhost instalattion.
+* Save 
+
+## Web Servers
 
 ### PHP
 
-To serve the PHP API, open the file `/api/vnstat.json.php` and make sure the environment path is correct to find your vnStat installation.
+Install the [PHP Server](https://www.php.net/manual/en/features.commandline.webserver.php).
 
-* Install a server like [Laravel Valet](https://laravel.com/docs/valet), [Local](https://localwp.com/), [MAMP](https://www.mamp.info/en/mamp), [XAMPP](https://www.apachefriends.org/) or another of your choice.
-* Create a domain on your Server, like `vnstat.test`.
-* Copy the content of the folder `/build` to your `/public` folder.
+```
+cd path/to/your/folder
+php -S localhost:8000
+```
+
+### Node.js
+
+Install the [http-server](https://www.npmjs.com/package/http-server).
+
+```
+cd path/to/your/folder
+http-server
+```
+
+### Other options
+
+You can use any other web server like **Laravel Valet**, **Mamp**, **Xampp**, etc. Just host the app on your `/public` folder and setup the **Crontab** service.
 
 ## Translations
 

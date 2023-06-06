@@ -1,7 +1,6 @@
 import React from "react";
 import useSettings, { ISettings } from "hooks/useSettings";
 import useLanguages from "hooks/useLanguages";
-import useReports from "hooks/useReports";
 import { IModal } from "hooks/useModal";
 import Select from "components/form/Select";
 import Field from "components/form/Field";
@@ -14,7 +13,6 @@ import useHelpers from "hooks/useHelpers";
 const Settings = ({ close }: Props) => {
   const { __ } = useLanguages();
   const { settings, setSettings } = useSettings();
-  const { changeReports } = useReports();
   const { getUnitOptions } = useHelpers();
   const [form, setForm] = React.useState<ISettings.Options>(settings);
 
@@ -37,7 +35,6 @@ const Settings = ({ close }: Props) => {
   function onSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
     setSettings(form);
-    changeReports(settings.interface);
     close();
   }
 

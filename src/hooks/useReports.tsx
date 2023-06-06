@@ -1,45 +1,52 @@
 import React from "react";
 import useSettings from "./useSettings";
-import vnStat from "services/vnstat";
+import Reports from "services/reports";
 import useHelpers from "./useHelpers";
+import vnStat from "services/vnstat";
 
 const ReportsContext = React.createContext<Context>(undefined!);
 
 export const ReportsProvider = ({ children }: Provider) => {
   const [ready, setReady] = React.useState(false);
-  const [reports, setReports] = React.useState<vnStat>(Object.create(null));
+  const [json, setJSON] = React.useState<vnStat>(undefined!);
+  const [reports, setReports] = React.useState<Reports>(Object.create(null));
 
   const { settings, setSettings } = useSettings();
   const { getUnit } = useHelpers();
 
-  // Load first reports
+  // Load JSON
 
   React.useEffect(() => {
-    (async function load() {
-      await changeReports(settings.interface);
-    })();
+    fetch(process.env.REACT_APP_API_URL!)
+      .then((response) => response.json())
+      .then((json) => {
+        setJSON(new vnStat(json));
+      })
+      .catch(console.error);
     // eslint-disable-next-line
   }, []);
 
+  // [json] Load first reports
+  // [settings.units] Update traffic formats when settings units change
+
+  React.useEffect(() => {
+    if (json) changeReports(settings.interface);
+    // eslint-disable-next-line
+  }, [json, settings.units]);
+
   // Change reports
 
-  async function changeReports(iface: string) {
-    const url = process.env.REACT_APP_API_URL;
-    await fetch(url + "?interface=" + iface)
-      .then((response) => response.json())
-      .then((json) => {
-        if (json.message) throw new Error(json.message);
-        setReports(new vnStat(json, getUnit()));
-        setSettings((prev) => ({ ...prev, interface: iface }));
-        setReady(true);
-      })
-      .catch(console.error);
+  function changeReports(iface: string) {
+    const unit = getUnit(settings.units);
+    setReports(json.getReports(iface, unit));
+    setSettings((prev) => ({ ...prev, interface: iface }));
+    setReady(true);
   }
 
   if (!ready) return null; // Wait before going to the next provider
 
   return (
-    <ReportsContext.Provider value={{ reports, changeReports }}>
+    <ReportsContext.Provider value={{ json, reports, changeReports }}>
       {children}
     </ReportsContext.Provider>
   );
@@ -50,8 +57,9 @@ const useReports = () => React.useContext(ReportsContext);
 export default useReports;
 
 type Context = {
-  reports: vnStat;
-  changeReports: (iface: string) => Promise<void>;
+  json: vnStat;
+  reports: Reports;
+  changeReports: (iface: string) => void;
 };
 
 type Provider = {
