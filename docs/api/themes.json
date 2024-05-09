@@ -1,9 +1,33 @@
 [
-	{ "title": "Dark Green", "file": "/static/themes/dark-green.css" },
-	{ "title": "Light Gren", "file": "/static/themes/light-green.css" },
-	{ "title": "Night City", "file": "/static/themes/night-city.css" },
-	{ "title": "Red", "file": "/static/themes/red.css" },
-	{ "title": "Cyberpunk", "file": "/static/themes/cyberpunk-2077.css" },
-	{ "title": "The Division", "file": "/static/themes/the-division.css" },
-	{ "title": "Gradients", "file": "/static/themes/gradients.css" }	
+  {
+    "title": "Dark Green",
+    "file": "/static/themes/dark-green.css",
+    "themeColor": "#151515"
+  },
+  {
+    "title": "Light Gren",
+    "file": "/static/themes/light-green.css",
+    "themeColor": "#edfaf7"
+  },
+  {
+    "title": "Night City",
+    "file": "/static/themes/night-city.css",
+    "themeColor": "#050110"
+  },
+  { "title": "Red", "file": "/static/themes/red.css", "themeColor": "#39141b" },
+  {
+    "title": "Cyberpunk",
+    "file": "/static/themes/cyberpunk-2077.css",
+    "themeColor": "#0b0f12"
+  },
+  {
+    "title": "The Division",
+    "file": "/static/themes/the-division.css",
+    "themeColor": "#0a090d"
+  },
+  {
+    "title": "Gradients",
+    "file": "/static/themes/gradients.css",
+    "themeColor": ""
+  }
 ]

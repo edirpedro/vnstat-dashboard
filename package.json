@@ -1,6 +1,6 @@
 {
   "name": "vnstat-dashboard",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "url": "https://github.com/edirpedro/vnstat-dashboard",
   "private": true,
   "dependencies": {
@@ -31,7 +31,8 @@
     "build:docs": "bash tasks/docs.sh",
     "build:local": "bash tasks/local.sh",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "profile": "npm run build -- --stats && npx webpack-bundle-analyzer ./build/bundle-stats.json"
   },
   "eslintConfig": {
     "extends": [

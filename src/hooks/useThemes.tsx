@@ -40,6 +40,8 @@ export const ThemesProvider = ({ children }: Provider) => {
 
   React.useEffect(() => {
     if (!theme) return;
+
+    // CSS
     let link = document.head.querySelector("#theme");
     if (link) link.remove();
     link = document.createElement("link");
@@ -47,6 +49,10 @@ export const ThemesProvider = ({ children }: Provider) => {
     link.setAttribute("rel", "stylesheet");
     link.setAttribute("href", process.env.PUBLIC_URL + theme.file);
     document.head.append(link);
+
+    // Theme color
+    const themeColor = document.head.querySelector('meta[name="theme-color"]');
+    themeColor?.setAttribute("content", theme.themeColor);
   }, [theme]);
 
   // Change theme
@@ -72,6 +78,7 @@ export default useThemes;
 export interface ITheme {
   title: string;
   file: string;
+  themeColor: string;
 }
 
 type Context = {

@@ -10,22 +10,22 @@ Check out the [Demo](https://edirpedro.github.io/vnstat-dashboard/)!
 
 ## How to install?
 
-* Install [vnStat 2.10+](https://github.com/vergoh/vnstat).
-* Install a web server to host your app, read some options below.
-* Download a copy of this repository.
-* Copy the content of folder `/build` to your localhost `/public` folder.
-* Setup a **Crontab** service to output the JSON data from vnStat, read more below.
-* Start your web server to view your reports.
+- Install [vnStat 2.10+](https://github.com/vergoh/vnstat).
+- Install a web server to host your app, read some options below.
+- Download a copy of this repository.
+- Copy the content of folder `/build` to your server folder `/public_html`.
+- Setup a **Crontab** service to output the JSON data from vnStat, read more below.
+- Start your web server to view your reports.
 
 ## Crontab
 
-Write a command at Crontab service to output the vnStat data every 5 minutes inside the `/path/to/localhost/public/api/vnstat.json` file.
+Write a command at Crontab service to output the vnStat data every 5 minutes inside the `/path/to/localhost/public_html/api/vnstat.json` file.
 
 ### Mac OS and Linux
 
-* Type `crontab -e`
-* Write `*/5 * * * * /path/to/bin/vnstat --json > /path/to/localhost/public/api/vnstat.json` changing the paths according to your vnstat and localhost instalattion.
-* Save 
+- Type `crontab -e`
+- Write `*/5 * * * * /path/to/bin/vnstat --json > /path/to/localhost/public_html/api/vnstat.json` changing the paths according to your vnstat and localhost instalattion.
+- Save
 
 ## Web Servers
 
@@ -57,13 +57,13 @@ At `/languages` folder you can write a file to translate the app. Just copy one 
 
 ## Themes
 
-You can build themes for this tool, to create a custom theme follow these steps. 
+You can build themes for this tool, to create a custom theme follow these steps.
 
-* Copy one of the themes from the folder `/static/themes` to the place you want to save it, like `/custom/themes`.
-* Rename the file to a name of your choice.
-* Add your colors on it or any other CSS you desire.
-* Open the file `/api/themes.json` and add it to the theme list to get it available on the dashboard.
-* Theme menu is located on the top right corner of the screen!
+- Copy one of the themes from the folder `/static/themes` to the place you want to save it, like `/custom/themes`.
+- Rename the file to a name of your choice.
+- Add your colors on it or any other CSS you desire.
+- Open the file `/api/themes.json` and add it to the theme list to get it available on the dashboard.
+- Theme menu is located on the top right corner of the screen!
 
 ![vnStat Dashboard](https://github.com/edirpedro/vnstat-dashboard/blob/main/public/static/media/screenshot-2.jpg)
 

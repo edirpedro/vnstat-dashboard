@@ -5,7 +5,7 @@ import { IModal } from "hooks/useModal";
 import Select from "components/form/Select";
 import Field from "components/form/Field";
 import FieldChart from "./FieldChart";
-import modalStyles from "hooks/useModal.module.scss";
+import modalStyles from "hooks/useModal/useModal.module.scss";
 import styles from "./Settings.module.scss";
 import Button from "components/form/Button";
 import useHelpers from "hooks/useHelpers";

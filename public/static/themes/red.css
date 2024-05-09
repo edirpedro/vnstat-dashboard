@@ -5,11 +5,11 @@
 	--tx-text: #190205;
 	--text: #f34d44;
 	--background: #090d14;
-	--dots: rgba(243, 77, 68, .4);
-	--card: rgba(20, 17, 30, .5);
-	--card-highlight: rgba(243, 77, 68, .1);
-	--chart-background: rgba(243, 77, 68, .2);
-}	
+	--dots: rgba(243, 77, 68, 0.4);
+	--card: rgba(20, 17, 30, 0.5);
+	--card-highlight: rgba(243, 77, 68, 0.1);
+	--chart-background: rgba(243, 77, 68, 0.2);
+}
 .wallpaper {
 	background: linear-gradient(to bottom, #39141b, #090d14);
 }
@@ -28,7 +28,7 @@
 	width: calc(100% - 4px);
 	margin: 2px;
 }
-[class*="ChartView_menu__"] button:hover, 
+[class*="ChartView_menu__"] button:hover,
 [class*="ChartView_menu__"] button.active {
 	color: var(--tx);
 }

@@ -1,18 +1,18 @@
 :root {
-	--rx: #F3E600;
-	--tx: #00F0FF;
-	--rx-text: #554B41;
-	--tx-text: #554B41;
+	--rx: #f3e600;
+	--tx: #00f0ff;
+	--rx-text: #554b41;
+	--tx-text: #554b41;
 	--text: white;
 	--background: #000;
-	--dots: rgba(255, 255, 255, .4);
-	--card: rgba(255, 255, 255, .1);
-	--card-highlight: rgba(0, 0, 0, .4);
-	--chart-background: rgba(255, 255, 255, .1);
-}	
+	--dots: rgba(255, 255, 255, 0.4);
+	--card: rgba(255, 255, 255, 0.1);
+	--card-highlight: rgba(0, 0, 0, 0.4);
+	--chart-background: rgba(255, 255, 255, 0.1);
+}
 .wallpaper {
 	background-image: url(../media/cyberpunk-2077.jpg);
-	opacity: .7;
+	opacity: 0.7;
 }
 
 /*

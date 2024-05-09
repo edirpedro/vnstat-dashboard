@@ -24,7 +24,7 @@ const Menu = ({ column, row }: IWidget.ColRow) => {
   if (!ifaces) return null;
 
   const current = ifaces.filter((el) => iface.includes(el.name));
-  const title = current[0].alias ?? current[0].name;
+  const title = current[0].alias == "" ? current[0].name : current[0].alias;
 
   return (
     <>

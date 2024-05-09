@@ -16,7 +16,7 @@ const MenuInterface = ({ iface, item }: Props) => {
   return (
     <li>
       <button key={item.name} onClick={() => changeReports(item.name)}>
-        {item.alias ?? item.name}
+        {item.alias == "" ? item.name : item.alias}
       </button>
       <input
         type="checkbox"

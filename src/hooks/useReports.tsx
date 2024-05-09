@@ -17,13 +17,12 @@ export const ReportsProvider = ({ children }: Provider) => {
   // Load JSON
 
   React.useEffect(() => {
-    fetch(process.env.REACT_APP_API_URL!)
+    fetch(`${process.env.REACT_APP_API_URL}`)
       .then((response) => response.json())
       .then((json) => {
         setJSON(new vnStat(json));
       })
       .catch(console.error);
-    // eslint-disable-next-line
   }, []);
 
   // [json] Load first reports

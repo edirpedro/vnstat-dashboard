@@ -198,7 +198,7 @@ const Chart = ({ type, traffic }: Props) => {
   switch (type) {
     case "fiveminute":
       options.grid!.x!.lines = getGridLines("day", columns[0]);
-      options.axis!.x!.tick!.count = 100;
+      if (columns[0].length > 100) options.axis!.x!.tick!.count = 100;
       zoomRange = getZoomRange(columns, 288); // 24h
       break;
     case "hour":

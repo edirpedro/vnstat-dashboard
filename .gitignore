@@ -5,6 +5,7 @@ node_modules
 *.zip
 *.local
 *.development
+bundle-stats.json
 
 # Private
 
