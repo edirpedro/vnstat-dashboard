@@ -6,10 +6,10 @@ const Field = ({ children, name, label }: Props) => {
   const { __ } = useLanguages();
 
   return (
-    <p className={styles.field}>
+    <div className={styles.field}>
       <label htmlFor={"field-" + name}>{__(label)}:</label>
       {children}
-    </p>
+    </div>
   );
 };
 

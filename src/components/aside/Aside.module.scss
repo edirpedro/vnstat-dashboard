@@ -1,6 +1,10 @@
+@use "styles/breakpoint";
+
 .aside {
 	flex-direction: column;
 	gap: 25px;
+	grid-column: 1 / span 2;
+	grid-row: 2 / span 6;
 
 	h2 {
 		cursor: pointer;
@@ -36,6 +40,11 @@
 		&:hover::after {
 			border-color: var(--tx-text);
 		}
+	}
+
+	@include breakpoint.down(md) {
+		grid-column: 1 / span 2;
+		grid-row: 2 / span 1;
 	}
 }
 

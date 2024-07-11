@@ -13,8 +13,11 @@
 	}
 
 	dd {
-		flex: 0 0 80%;
+		flex: 0 0 calc(100% - 80px);
 		margin: 0;
+		overflow: hidden;
+		white-space: nowrap;
+		text-overflow: ellipsis;
 	}
 
 	p {

@@ -1,7 +1,11 @@
+@use "styles/breakpoint";
+
 .logo {
 	display: flex;
 	align-items: center;
 	justify-content: flex-end;
+	grid-column: 13 / span 4;
+	grid-row: 4 / span 3;
 
 	h1 {
 		font-size: 72px;
@@ -15,6 +19,16 @@
 		font-size: 10px;
 		text-align: right;
 		margin-right: 10px;
+	}
+
+	@include breakpoint.down(md) {
+		grid-column: 2 / span 3;
+		grid-row: 1 / span 1;
+		height: 100px;
+
+		h1 {
+			font-size: 45px;
+		}
 	}
 }
 

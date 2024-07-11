@@ -1,17 +1,19 @@
+import React from "react";
 import useLanguages from "hooks/useLanguages";
 import useModal from "hooks/useModal";
 import useReports from "hooks/useReports";
 import useSettings from "hooks/useSettings";
 import About from "../about/About";
 import Settings from "../settings/Settings";
-import Widget, { IWidget } from "../widget/Widget";
+import Widget from "../widget/Widget";
 import MenuInterface from "./MenuInterface";
 import styles from "./Menu.module.scss";
 
-const Menu = ({ column, row }: IWidget.ColRow) => {
+const Menu = () => {
   const { __ } = useLanguages();
   const { reports } = useReports();
   const { ifaces } = useSettings();
+  const [active, setActive] = React.useState(false);
 
   const [ModalAbout, openAbout] = useModal(About, { name: "about" });
   const [ModalSettings, openSettings] = useModal(Settings, {
@@ -28,9 +30,13 @@ const Menu = ({ column, row }: IWidget.ColRow) => {
 
   return (
     <>
-      <Widget column={column} row={row} className={styles.menu}>
-        <div className={styles.box}>
-          <div className={styles.title}>
+      <Widget className={styles.menu}>
+        <div
+          className={[styles.box, active ? styles.active : null].join(" ")}
+          onMouseEnter={() => setActive(true)}
+          onMouseLeave={() => setActive(false)}
+        >
+          <div className={styles.title} onClick={() => setActive(!active)}>
             {title}
             {current.length > 1 && <span>+</span>}
           </div>

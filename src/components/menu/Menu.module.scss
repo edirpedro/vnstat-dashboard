@@ -1,5 +1,10 @@
+@use "styles/breakpoint";
+
 .menu {
 	z-index: 1;
+	position: absolute;
+	grid-column: 1 / span 2;
+	grid-row: 1 / span 1;
 }
 
 .box {
@@ -7,10 +12,6 @@
 	padding: 10px;
 	border: 1px solid var(--rx);
 	background: transparent;
-
-	&:hover {
-		backdrop-filter: blur(5px);
-	}
 }
 
 .title {
@@ -133,8 +134,24 @@
 			}
 		}
 	}
+
+	@include breakpoint.down(md) {
+		li:global(.divider)::before {
+			margin: 10px 0;
+		}
+
+		button {
+			padding: 10px 0;
+		}
+	}
 }
 
-.box:hover .list {
-	display: block;
+// Menu active
+
+.active {
+	backdrop-filter: blur(5px);
+
+	.list {
+		display: block;
+	}
 }

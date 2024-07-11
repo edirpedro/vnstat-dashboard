@@ -1,6 +1,17 @@
+@use "styles/breakpoint";
+
 .chartView {
 	position: relative;
 	display: flex;
+	grid-column: 1 / span 16;
+	grid-row: 8 / span 2;
+
+	@include breakpoint.down(md) {
+		grid-column: 1 / span 4;
+		grid-row: 3 / span 1;
+		height: 200px;
+		margin: 2rem 0;
+	}
 }
 
 // Menu
@@ -25,5 +36,9 @@
 		&:global(.active) {
 			color: var(--rx);
 		}
+	}
+
+	@include breakpoint.down(md) {
+		display: none;
 	}
 }

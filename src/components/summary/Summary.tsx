@@ -3,7 +3,7 @@ import Widget, { IWidget } from "../widget/Widget";
 import Chart from "./Chart";
 import styles from "./Summary.module.scss";
 
-const Summary = ({ column, row }: IWidget.ColRow) => {
+const Summary = () => {
   const { reports } = useReports();
 
   const zero = { rx: 0, tx: 0 };
@@ -22,7 +22,7 @@ const Summary = ({ column, row }: IWidget.ColRow) => {
   const tH = Math.max(t.rx, t.tx);
 
   return (
-    <Widget column={column} row={row} className={styles.summary}>
+    <Widget className={styles.summary}>
       <div className={styles.charts}>
         <div className={styles.group + " is-day"}>
           <Chart name="dayA" item={dA} higher={dH} />

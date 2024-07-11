@@ -16,13 +16,13 @@ function App() {
       <AppProviders>
         <Themes />
         <Dashboard>
-          <Logo column="13/span 4" row="4/span 3" />
-          <Menu column="1/span 2" row="1/span 1" />
-          <Aside column="1/span 2" row="2/span 6" />
-          <Summary column="12/span 5" row="1/span 2" />
+          <Logo />
+          <Menu />
+          <Aside />
+          <Summary />
           <ReportsProvider>
-            <Reports column="3/span 9" row="1/span 7" />
-            <ChartView column="1/span 16" row="8/span 2" />
+            <Reports />
+            <ChartView />
           </ReportsProvider>
         </Dashboard>
       </AppProviders>

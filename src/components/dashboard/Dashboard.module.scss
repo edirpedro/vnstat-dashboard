@@ -1,19 +1,33 @@
+@use "styles/breakpoint";
+
 .dashboard {
 	display: grid;
 	width: 100vw;
-	height: 100vh;
-	grid-template-columns: repeat(16, 1fr);
-	grid-template-rows: repeat(9, minmax(0, 1fr));
-	grid-gap: 10px;
-	padding: 50px;
 	background-image: radial-gradient(circle, var(--dots) 1px, transparent 1px);
 	background-size: 50px 50px;
 	background-position: center center;
+
+	@include breakpoint.up(md) {
+		grid-gap: 10px;
+		grid-template-columns: repeat(16, 1fr);
+		grid-template-rows: repeat(9, minmax(0, 1fr));
+		padding: 50px;
+		height: 100vh;
+	}
+
+	@include breakpoint.down(md) {
+		grid-gap: 25px;
+		grid-template-columns: repeat(4, 1fr);
+		grid-template-rows: auto;
+		padding: 25px;
+		height: auto;
+		min-height: 100vh;
+	}
 }
 
 .wallpaper {
 	z-index: -1;
-	position: absolute;
+	position: fixed;
 	top: 0;
 	left: 0;
 	width: 100vw;

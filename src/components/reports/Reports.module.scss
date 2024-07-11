@@ -1,7 +1,17 @@
+@use "styles/breakpoint";
+
 .reports {
 	flex-direction: column;
 	width: 100%;
 	height: 100%;
+	grid-column: 3 / span 9;
+	grid-row: 1 / span 7;
+
+	@include breakpoint.down(md) {
+		grid-column: 1 / span 4;
+		grid-row: 4 / span 1;
+		height: 680px;
+	}
 }
 
 // Caption
@@ -15,6 +25,14 @@
 		margin: 0;
 		font-size: 25px;
 		text-transform: uppercase;
+	}
+
+	@include breakpoint.down(md) {
+		padding: 50px 0 0;
+
+		h2 {
+			text-align: center;
+		}
 	}
 }
 
@@ -47,5 +65,10 @@
 			color: var(--rx);
 			background: transparent;
 		}
+	}
+
+	@include breakpoint.down(md) {
+		right: 50%;
+		transform: translateX(50%);
 	}
 }

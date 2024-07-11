@@ -1,5 +1,12 @@
+@use "styles/breakpoint";
+
 .settings {
 	label[for$="_log"] {
 		margin-left: 20px;
+
+		// @include breakpoint.down(md) {
+		// 	display: block;
+		// 	margin: 0.5rem 0;
+		// }
 	}
 }

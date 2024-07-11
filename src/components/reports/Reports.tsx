@@ -3,12 +3,12 @@ import useReports from "hooks/useReports";
 import useLanguages from "hooks/useLanguages";
 import useSettings from "hooks/useSettings";
 import { ReportsContext } from "./ReportsContext";
-import Widget, { IWidget } from "../widget/Widget";
+import Widget from "../widget/Widget";
 import Cards from "./Cards";
 import { IvnStat } from "services/vnstat.type";
 import styles from "./Reports.module.scss";
 
-const Reports = ({ column, row }: IWidget.ColRow) => {
+const Reports = () => {
   const { __ } = useLanguages();
   const { reports } = useReports();
   const { settings } = useSettings();
@@ -27,7 +27,7 @@ const Reports = ({ column, row }: IWidget.ColRow) => {
   ];
 
   return (
-    <Widget column={column} row={row} className={styles.reports}>
+    <Widget className={styles.reports}>
       <div className={styles.caption}>
         <h2>{__("Reports")}</h2>
         <div className={styles.menu}>

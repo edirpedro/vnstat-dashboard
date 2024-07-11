@@ -6,9 +6,16 @@ import styles from "./Themes.module.scss";
 const Themes = () => {
   const { __ } = useLanguages();
   const { theme, themes, changeTheme } = useThemes();
+  const [active, setActive] = React.useState(false);
 
   return (
-    <div id="themes" className={styles.themes}>
+    <div
+      id="themes"
+      className={[styles.themes, active ? styles.active : null].join(" ")}
+      onMouseEnter={() => setActive(true)}
+      onMouseLeave={() => setActive(false)}
+    >
+      <div className={styles.button} onClick={() => setActive(!active)}></div>
       <div className={styles.box}>
         <h2>{__("Themes")}</h2>
         {themes.map((item, index) => (

@@ -3,12 +3,12 @@ import useReports from "hooks/useReports";
 import useLanguages from "hooks/useLanguages";
 import useSettings from "hooks/useSettings";
 import { ReportsContext, ReportsContextTab } from "../reports/ReportsContext";
-import Widget, { IWidget } from "../widget/Widget";
+import Widget from "../widget/Widget";
 import Chart from "./Chart";
 import { IvnStat } from "services/vnstat.type";
 import styltes from "./ChartView.module.scss";
 
-const ChartView = ({ column, row }: IWidget.ColRow) => {
+const ChartView = () => {
   const { __ } = useLanguages();
   const { reports } = useReports();
   const { settings } = useSettings();
@@ -40,8 +40,6 @@ const ChartView = ({ column, row }: IWidget.ColRow) => {
 
   return (
     <ChartViewRender
-      column={column}
-      row={row}
       menu={menu}
       type={type}
       traffic={traffic}
@@ -52,8 +50,8 @@ const ChartView = ({ column, row }: IWidget.ColRow) => {
 };
 
 const ChartViewRender = React.memo(
-  ({ column, row, menu, type, traffic, setTab }: RenderProps) => (
-    <Widget column={column} row={row} className={styltes.chartView}>
+  ({ menu, type, traffic, setTab }: RenderProps) => (
+    <Widget className={styltes.chartView}>
       <div className={styltes.menu}>
         {menu.map((item, index) => (
           <button
@@ -77,7 +75,7 @@ const ChartViewRender = React.memo(
 
 export default ChartView;
 
-interface RenderProps extends IWidget.ColRow {
+interface RenderProps {
   menu: Menu[];
   type: IvnStat.TrafficKeys;
   traffic: IvnStat.Traffics;

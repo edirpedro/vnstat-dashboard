@@ -1,6 +1,6 @@
 {
   "name": "vnstat-dashboard",
-  "version": "0.2.1",
+  "version": "0.2.2",
   "url": "https://github.com/edirpedro/vnstat-dashboard",
   "private": true,
   "dependencies": {

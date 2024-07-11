@@ -1,0 +1,45 @@
+@use "sass:map";
+
+$breakpoints: (
+	// Small Phones
+	xs: 320px,
+	// Phones
+	sm: 414px,
+	// Tablets vertical
+	md: 834px,
+	// Tablets horizontal
+	lg: 1112px,
+	// Desktop
+	xl: 1200px
+);
+
+// Breaks above the marking point.
+// @include breakpoint.up(sm) { ... }
+
+@mixin up($name) {
+	$width: map.get($breakpoints, $name) + 1px;
+	@media (min-width: $width) {
+		@content;
+	}
+}
+
+// Break from the marking point downwards.
+// @include breakpoint.down(sm) { ... }
+
+@mixin down($name) {
+	$width: map.get($breakpoints, $name);
+	@media (max-width: $width) {
+		@content;
+	}
+}
+
+// Break between two marking points
+// @include breakpoint.between(sm, lg) { ... }
+
+@mixin between($min, $max) {
+	$min: map.get($breakpoints, $min) + 1px;
+	$max: map.get($breakpoints, $max);
+	@media (min-width: $min) and (max-width: $max) {
+		@content;
+	}
+}

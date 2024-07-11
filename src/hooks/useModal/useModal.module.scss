@@ -26,10 +26,13 @@
 	top: 50%;
 	left: 50%;
 	padding: 25px;
-	width: 600px;
+	width: 90%;
+	max-width: 600px;
+	max-height: 90vh;
 	transform: translate(-50%, -50%);
 	background: var(--card-highlight);
 	border: 1px solid var(--rx);
+	overflow: auto;
 
 	h1 {
 		margin: 0 0 25px;

@@ -1,14 +1,28 @@
-.field {
-	display: flex;
-	margin: 10px 0;
+@use "styles/breakpoint";
 
-	> label:first-child {
+.field {
+	@include breakpoint.up(md) {
 		display: flex;
-		align-items: center;
-		justify-content: flex-end;
-		width: 120px;
-		min-height: 30px;
-		margin-right: 15px;
-		text-align: right;
+		margin: 10px 0;
+
+		> label:first-child {
+			display: flex;
+			align-items: center;
+			justify-content: flex-end;
+			width: 120px;
+			min-height: 30px;
+			margin-right: 15px;
+			text-align: right;
+		}
+	}
+
+	@include breakpoint.down(md) {
+		display: block;
+		margin: 10px 0;
+
+		> label:first-child {
+			display: block;
+			min-height: 25px;
+		}
 	}
 }
