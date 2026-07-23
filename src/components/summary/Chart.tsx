@@ -6,7 +6,7 @@ import { IvnStat } from "services/vnstat.type";
 
 const Chart = ({ name, item, higher }: Props) => {
   const { __ } = useLanguages();
-  const ref = React.useRef<any>();
+  const ref = React.useRef<any>(undefined);
   const rx = item.rx;
   const tx = item.tx;
 

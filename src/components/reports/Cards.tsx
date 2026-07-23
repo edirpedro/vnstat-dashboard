@@ -12,7 +12,9 @@ const Cards = ({ type, traffic }: Props) => {
 
   // Scroll list to top on every change
 
-  React.useEffect(() => ref.current?.scrollTo(0, 0));
+  React.useEffect(() => {
+    ref.current?.scrollTo(0, 0);
+  }, [type]);
 
   // Get subtitles according to the report type
 
@@ -69,7 +71,7 @@ const Cards = ({ type, traffic }: Props) => {
               index={index}
               max={max}
             />
-          )
+          ),
         )}
       </ul>
     </div>

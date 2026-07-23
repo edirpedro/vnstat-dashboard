@@ -19,7 +19,7 @@ const Chart = ({ type, traffic }: Props) => {
   const { settings } = useSettings();
   const { formatTraffic } = useHelpers();
   const ref = React.useRef<HTMLDivElement>(null);
-  const instance = React.useRef<bbChart>();
+  const instance = React.useRef<bbChart>(undefined);
 
   const defaults: ChartOptions = {
     data: {

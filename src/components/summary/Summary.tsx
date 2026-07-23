@@ -1,5 +1,5 @@
 import useReports from "hooks/useReports";
-import Widget, { IWidget } from "../widget/Widget";
+import Widget from "../widget/Widget";
 import Chart from "./Chart";
 import styles from "./Summary.module.scss";
 

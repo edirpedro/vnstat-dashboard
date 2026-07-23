@@ -5,9 +5,11 @@ cd "$(dirname "$0")"
 cd ..
 
 # Compile for git pages
-export REACT_APP_API_URL=/vnstat-dashboard/api/demo.json
+export VITE_APP_API_URL=/vnstat-dashboard/api/demo.json
+export VITE_BASE_URL=/vnstat-dashboard/
 export BUILD_PATH=docs
-export PUBLIC_URL=/vnstat-dashboard
+rm -rf docs
+mkdir -p docs
 npm run build
 
 # Write .nojekyll

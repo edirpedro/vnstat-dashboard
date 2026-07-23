@@ -14,7 +14,7 @@ export const ThemesProvider = ({ children }: Provider) => {
 
   React.useEffect(() => {
     (async function load() {
-      await fetch(process.env.PUBLIC_URL + "/api/themes.json")
+      await fetch(`${import.meta.env.BASE_URL}api/themes.json`)
         .then((response) => response.json())
         .then((json) => {
           if (json.message) throw new Error(json.message);
@@ -31,7 +31,7 @@ export const ThemesProvider = ({ children }: Provider) => {
     if (!themes.length) return;
     const pick = themes.at(0) as ITheme;
     const chosen = themes.find(
-      (el) => el.file === settings.theme?.file
+      (el) => el.file === settings.theme?.file,
     ) as ITheme;
     changeTheme(chosen ?? pick);
     setReady(true);
@@ -47,7 +47,7 @@ export const ThemesProvider = ({ children }: Provider) => {
     link = document.createElement("link");
     link.setAttribute("id", "theme");
     link.setAttribute("rel", "stylesheet");
-    link.setAttribute("href", process.env.PUBLIC_URL + theme.file);
+    link.setAttribute("href", `${import.meta.env.BASE_URL}${theme.file}`);
     document.head.append(link);
 
     // Theme color

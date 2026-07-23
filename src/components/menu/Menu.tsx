@@ -26,7 +26,7 @@ const Menu = () => {
   if (!ifaces) return null;
 
   const current = ifaces.filter((el) => iface.includes(el.name));
-  const title = current[0].alias == "" ? current[0].name : current[0].alias;
+  const title = current[0].alias === "" ? current[0].name : current[0].alias;
 
   return (
     <>

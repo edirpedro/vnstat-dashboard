@@ -1,4 +1,4 @@
-const { default: vnStat } = require("./vnstat");
+import vnStat from "./vnstat";
 
 export const iface = {
   name: "en0",

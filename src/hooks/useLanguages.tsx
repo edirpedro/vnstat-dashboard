@@ -12,16 +12,14 @@ export const LanguagesProvider = ({ children }: Provider) => {
   React.useEffect(() => {
     (async function load() {
       const local = DateTime.local();
-      await fetch(
-        process.env.PUBLIC_URL + "/languages/" + local.locale + ".json"
-      )
+      await fetch(`${import.meta.env.BASE_URL}languages/${local.locale}.json`)
         .then((response) => response.json())
         .then((json) => {
           setTranslations(json);
         })
         .catch((e) => {
           console.log(
-            "Language file for '" + local.locale + "' was not found."
+            "Language file for '" + local.locale + "' was not found.",
           );
           setTranslations({});
         });

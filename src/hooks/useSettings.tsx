@@ -24,14 +24,14 @@ export const SettingsProvider = ({ children }: Provider) => {
       chart_month_type: "area",
       chart_year_log: false,
       chart_year_type: "area",
-    }
+    },
   );
 
   // Fetch essential data
 
   React.useEffect(() => {
     (async function load() {
-      await fetch(process.env.REACT_APP_API_URL + "?dbiflist")
+      await fetch(import.meta.env.VITE_APP_API_URL + "?dbiflist")
         .then((response) => response.json())
         .then((json) => {
           if (json.message) throw new Error(json.message);
@@ -41,7 +41,7 @@ export const SettingsProvider = ({ children }: Provider) => {
           let iface: string;
           let test: string[] = settings.interface.split("+");
           const exists = json.interfaces.filter((el: any) =>
-            test.includes(el.name)
+            test.includes(el.name),
           );
           if (exists.length) iface = exists.map((el: any) => el.name).join("+");
           else iface = json.interfaces.at(0).name;

@@ -14,7 +14,7 @@ const ChartView = () => {
   const { settings } = useSettings();
   const { tab, setTab } = React.useContext(ReportsContext);
 
-  let lastType = React.useRef<ReportsContextTab>();
+  let lastType = React.useRef<ReportsContextTab>(undefined);
   let type: ReportsContextTab = tab ?? settings.chart_initial;
   const traffic = reports.getAllTraffic(true);
   const iface = reports.getInterface();

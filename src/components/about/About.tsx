@@ -10,11 +10,11 @@ const About = () => {
 
   React.useEffect(() => {
     fetch(
-      "https://raw.githubusercontent.com/edirpedro/vnstat-dashboard/main/package.json"
+      "https://raw.githubusercontent.com/edirpedro/vnstat-dashboard/main/package.json",
     )
       .then((response) => response.json())
       .then((json) => {
-        if (json.length && json.version !== process.env.REACT_APP_VERSION)
+        if (json.length && json.version !== import.meta.env.VITE_APP_VERSION)
           setUpdate(json.version);
       })
       .catch(console.error);
@@ -26,7 +26,7 @@ const About = () => {
       <dl>
         <dt>{__("Version")}:</dt>
         <dd>
-          {process.env.REACT_APP_VERSION}
+          {import.meta.env.VITE_APP_VERSION}
           {update && (
             <>
               <span> &mdash; {__("available")} </span>
