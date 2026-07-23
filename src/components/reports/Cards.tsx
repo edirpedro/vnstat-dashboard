@@ -14,7 +14,7 @@ const Cards = ({ type, traffic }: Props) => {
 
   React.useEffect(() => {
     ref.current?.scrollTo(0, 0);
-  }, [type]);
+  }, [type, traffic]);
 
   // Get subtitles according to the report type
 
