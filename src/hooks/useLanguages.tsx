@@ -17,7 +17,7 @@ export const LanguagesProvider = ({ children }: Provider) => {
         .then((json) => {
           setTranslations(json);
         })
-        .catch((e) => {
+        .catch(() => {
           console.log(
             "Language file for '" + local.locale + "' was not found.",
           );

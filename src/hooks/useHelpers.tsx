@@ -22,7 +22,7 @@ const useHelpers = () => {
    * @returns {object}
    */
   function getUnit(
-    name: ISettings.Options["units"] = settings.units
+    name: ISettings.Options["units"] = settings.units,
   ): IvnStat.Unit {
     return getUnitOptions().filter((el) => el.name === name)[0];
   }

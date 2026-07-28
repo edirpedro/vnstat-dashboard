@@ -1,4 +1,3 @@
-import React from "react";
 import useLanguages from "hooks/useLanguages";
 import useReports from "hooks/useReports";
 import Chart, { ChartProps } from "./Chart";

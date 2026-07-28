@@ -93,7 +93,7 @@ class vnStat {
    * @returns {}
    */
   mergeTraffic(traffic: IvnStat.Traffic[], items: IvnStat.Traffic[]): IvnStat.Traffic[] {
-    items.forEach((item, n) => {
+    items.forEach((item) => {
       const index = traffic.findIndex((t) => t.timestamp === item.timestamp);
       if (index >= 0) {
         traffic[index].rx += item.rx;

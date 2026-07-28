@@ -1,6 +1,5 @@
 import React from "react";
-import {
-  bb,
+import bb, {
   bar,
   areaSpline,
   zoom,
@@ -147,7 +146,7 @@ const Chart = ({ type, traffic }: Props) => {
     let columns: Columns = [["x"], ["RX"], ["TX"]];
     traffic.forEach((item) => {
       columns[0].push(
-        DateTime.fromObject({ ...item.date, ...item.time }).toJSDate()
+        DateTime.fromObject({ ...item.date, ...item.time }).toJSDate(),
       );
       columns[1].push(item.rx);
       columns[2].push(item.tx);
